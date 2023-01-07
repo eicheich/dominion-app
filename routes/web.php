@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -15,8 +16,8 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('admin.index');
+Route::prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::prefix('login')->group(function () {
