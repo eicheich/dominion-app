@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,15 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::prefix('admin')->group(function () {
+
+// route group with middleware
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/products', [ProductController::class, 'products'])->name('products');
+    Route::get('/users', [DashboardController::class, 'users'])->name('users');
 });
+
+Route::resource('products', ProductController::class);
 
 Route::prefix('login')->group(function () {
     Route::get('/', [LoginController::class, 'index'])->name('login');
