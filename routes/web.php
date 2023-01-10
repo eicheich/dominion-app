@@ -41,5 +41,5 @@ Route::prefix('auth')->group(function () {
 // client
 Route::prefix('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('landingpage');
-    Route::get('/product/{id}', [ClientController::class, 'show'])->name('product.show');
+    Route::get('/product/{id}', [ClientController::class, 'show'])->name('client.product.show');
 });

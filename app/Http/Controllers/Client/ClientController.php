@@ -4,16 +4,25 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ClientController extends Controller
 {
     public function index()
     {
-        return view('client.landingpage');
+        $products = Product::all();
+
+        return view('client.landingpage', [
+            'products' => $products
+        ]);
     }
 
     public function show($id)
     {
-        return view('client.product.show');
+        $product = Product::find($id);
+
+        return view('client.product.show', [
+            'product' => $product
+        ]);
     }
 }
