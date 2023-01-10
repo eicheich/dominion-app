@@ -1,11 +1,14 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+// use App\Http\Controllers\Admin\Storage;
+// use Storage;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class ProductController extends Controller
 {
@@ -77,10 +80,8 @@ class ProductController extends Controller
 
     public function update (Request $request, $id)
     {
-        // dapatkan product berdasarkan id
         $product = Product::findOrFail($id);
 
-        // validate lalu dapatkan image dan update ke database
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -90,20 +91,14 @@ class ProductController extends Controller
             'category_id' => 'required'
         ]);
 
-        // dapatkan image
         $image = $request->file('image');
-        // jika image tidak kosong
         if ($image) {
-            // simpan image dengan hash
             $image = $image->hashName();
-            // simpan image ke folder public/images
             $request->file('image')->storeAs('images/products', $image);
         } else {
-            // jika image kosong, maka gunakan image lama
             $image = $product->image;
         }
 
-        // update ke database
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
@@ -116,11 +111,12 @@ class ProductController extends Controller
         return redirect()->route('products')->with('success', 'Product updated successfully');
     }
 
-    public function destroy ($id)
-    {
-        // dapatkan product berdasarkan id
-        $product = Product:: findOrFail($id);
-        $product->delete();
-        return redirect()->route('products')->with('success', 'Product deleted successfully');
-    }
+    public function destroy($id)
+{
+  $data = Product::findOrFail($id);
+  Storage::disk('local')->delete($data->image);
+  $data->delete();
+
+  return redirect()->route('products')->with('success', 'Data berhasil dihapus.');
+}
 }

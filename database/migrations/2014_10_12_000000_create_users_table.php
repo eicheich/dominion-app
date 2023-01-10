@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('is_admin');
         });
     }
 
