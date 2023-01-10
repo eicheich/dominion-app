@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Client\ClientController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+// route group with middleware
+Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/products', [ProductController::class, 'products'])->name('products');
+    Route::get('/users', [DashboardController::class, 'users'])->name('users');
+});
+
+Route::resource('products', ProductController::class);
+
+Route::prefix('auth')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/log', [LoginController::class, 'login'])->name('login.post');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/reg', [RegisterController::class, 'register'])->name('register.post');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+
+// client
+Route::prefix('')->group(function () {
+    Route::get('/', [ClientController::class, 'index'])->name('landingpage');
+    Route::get('/product/{id}', [ClientController::class, 'show'])->name('product.show');
 });

@@ -1,0 +1,60 @@
+@extends('layouts.mainAdmin')
+@include('layouts.navadmin')
+<div class="container-fluid">
+  <div class="row">
+    {{-- include navbar --}}
+    @include('layouts.dashboard')
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard Admin</h1>
+        <h2>Product</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            {{-- button dengan href --}}
+            <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-secondary">tambah product</a>
+          </div>
+        </div>
+      </div>
+      {{-- buat card product ke samping maksimal 4 lalu akan turun kebawah--}}
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+            @foreach ($products as $product)
+            <div class="col">
+            <div class="card">
+                <img src="{{ asset('storage/images/products/'.$product->image) }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">{{ $product->name }}</h5>
+                <p class="card-text">{{ $product->description }}</p>
+                {{-- buat stock dan price dalam satu baris --}}
+                <div class="row">
+                    <div class="col">
+                        <p class="card-text">Stock: {{ $product->stock }}</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">Price: {{ $product->price }}</p>
+                    </div>
+                </div>
+                <p class="card-text">{{ $product->category->name }}</p>
+                <div class="d-flex justify-content-between align-items-left">
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-secondary h-100">Edit</a>
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="form-action" >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+                </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+    </main>
+  </div>
+</div>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+
+
