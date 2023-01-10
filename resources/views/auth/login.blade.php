@@ -18,10 +18,10 @@
             Login
         </button>
     </div>
-    <div class="form-group">
-        <a href="{{ route('register') }}">Register</a>
-    </div>  
 </form>
+<div class="form-group">
+        <a href="{{ route('register') }}">Register</a>
+    </div>
 
 
 @endsection
