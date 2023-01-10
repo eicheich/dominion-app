@@ -20,7 +20,7 @@ use App\Models\Product;
 
 
 // route group with middleware
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProductController::class, 'products'])->name('products');
     Route::get('/users', [DashboardController::class, 'users'])->name('users');

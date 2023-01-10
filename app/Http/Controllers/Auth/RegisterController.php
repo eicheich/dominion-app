@@ -20,25 +20,27 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // register dengan mengecek apakah email sudah ada atau belum dan confirm password
         $this->validate($request, [
+            'name' => 'required',
             'username' => 'required',
             'email' => 'required',
             'password' => 'required'
         ]);
 
-        // cek email sudah ada atau belum
-        $user = User::where('email', $request->email)->first();
+        // cek email dan username sudah ada atau belum
+        $user = User::where('email', $request->email)->orWhere('username', $request->username)->first();
         if ($user) {
-            return redirect()->route('register')->with('error', 'Email Already Exist');
-        } else {
-            // jika email belum ada maka akan di register
-            $user = new User;
-            $user->username = $request->username;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
+            return redirect()->back()->with('error', 'Email atau Username sudah terdaftar');
+        } else{
+            $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
             $user->save();
             return redirect()->route('login')->with('success', 'Register Success');
         }
+
     }
 }
