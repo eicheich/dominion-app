@@ -16,7 +16,6 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        // hanya bisa di akses jika email admin@dominion.com
         if (!auth()->check()||$request->user()->is_admin != 1) {
             abort(403);
         }

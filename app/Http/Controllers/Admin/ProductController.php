@@ -95,6 +95,7 @@ class ProductController extends Controller
         if ($image) {
             $image = $image->hashName();
             $request->file('image')->storeAs('images/products', $image);
+            Storage::disk('local')->delete($product->image);
         } else {
             $image = $product->image;
         }

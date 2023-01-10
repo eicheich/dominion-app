@@ -24,11 +24,13 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <ul class="navbar-nav ms-auto" >
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-      </ul>
+      {{-- jika sudah login tampilkan logout, jika belum tampilkan login --}}
+        @if (Auth::check())
+            <a href="{{ route('logout') }}" class="btn btn-outline-success">Logout</a>
+        @else
+            <a href="{{ route('login') }}" class="btn btn-outline-success">Login</a>
+        @endif
+        
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
