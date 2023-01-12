@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ClientController;
 use App\Models\Product;
 
@@ -20,7 +21,7 @@ use App\Models\Product;
 */
 
 
-// route group with middleware
+// admin
 Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProductController::class, 'products'])->name('products');
@@ -38,8 +39,17 @@ Route::prefix('auth')->group(function () {
 });
 
 
-// client
+// guest
 Route::prefix('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('landingpage');
     Route::get('/product/{id}', [ClientController::class, 'show'])->name('client.product.show');
+});
+// hanya bisa di akses ketika user sudah login
+Route::prefix('cart')->middleware(['auth'])->group(function () {
+
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::get('/get', [CartController::class, 'countItem'])->name('cart.item');
+    // cart store and update
+    Route::post('/store', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
 });

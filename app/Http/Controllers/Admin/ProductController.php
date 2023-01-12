@@ -45,9 +45,7 @@ class ProductController extends Controller
 
         // dapatkan image
         $image = $request->file('image');
-        // simpan image dengan hash
         $image = $image->hashName();
-        // simpan image ke folder public/images
         $request->file('image')->storeAs('images/products', $image);
 
 
