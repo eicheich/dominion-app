@@ -35,7 +35,7 @@
         <form action="{{ route('cart.store') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="user_id" value="">
             {{-- {SIZE M, L ,XL --}}
             <div class="form-group">
                 <label for="size">Size</label>
