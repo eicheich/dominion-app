@@ -34,7 +34,7 @@ Route::prefix('auth')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/log', [LoginController::class, 'login'])->name('login.post');
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
-    Route::post('/reg', [RegisterController::class, 'register'])->name('register.store');
+    Route::post('/reg', [RegisterController::class, 'register'])->name('register.post');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
