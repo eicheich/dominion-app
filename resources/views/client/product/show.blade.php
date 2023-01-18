@@ -35,8 +35,7 @@
         <form action="{{ route('cart.store') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <input type="hidden" name="user_id" value="">
-            {{-- {SIZE M, L ,XL --}}
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <div class="form-group">
                 <label for="size">Size</label>
                 <select class="form-control" name="size" id="size">
@@ -45,7 +44,6 @@
                     <option value="XL">XL</option>
                 </select>
             </div>
-            {{-- drop down qty --}}
             <div class="form-group">
                 <label for="quantity">Quantity</label>
                 <select class="form-control" name="quantity" id="quantity">
