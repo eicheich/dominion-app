@@ -25,7 +25,7 @@
                                         <img src="https://i.ibb.co/VN43vPz/Dominion.png" style="width: 120px;"
                                             alt="logo">
                                         <br>
-                                        <h4 class="mt-5 text-center">Welcome Back! </h4>
+                                        <h4 class="mt-5 text-center">Create your account</h4>
                                         <h5 class="text-center mb-5 pb-5" style="color: grey">Please login to your
                                             account</h5>
                                     </div>

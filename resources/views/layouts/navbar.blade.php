@@ -1,4 +1,4 @@
-    <header>
+    {{-- <header>
         <input type="checkbox" id="chk1">
         <div class="logo">
             <h1>Dominion</h1>
@@ -10,7 +10,6 @@
             </form>
         </div>
 
-        {{-- button sign in dan sign up href --}}
         <div class="sign-in">
             <a class="button-1" href="{{ route('login') }}">Sign In</a>
         </div>
@@ -34,10 +33,10 @@
             </ul>
         </div>
     </header>
+ --}}
 
 
-
-    {{-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +67,7 @@
 
       @endcan
       {{-- jika sudah login tampilkan logout, jika belum tampilkan login --}}
-    {{-- @if (Auth::check())
+    @if (Auth::check())
             <a href="{{ route('logout') }}" class="btn btn-outline-success">Logout</a>
         @else
             <a href="{{ route('login') }}" class="btn btn-outline-success">Login</a>
@@ -80,4 +79,4 @@
       </form>
     </div>
   </div>
-</nav> --}}
+</nav>
