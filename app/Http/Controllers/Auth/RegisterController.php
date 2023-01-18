@@ -27,7 +27,6 @@ class RegisterController extends Controller
             'password' => 'required'
         ]);
 
-        // cek email dan username sudah ada atau belum
         $user = User::where('email', $request->email)->orWhere('username', $request->username)->first();
         if ($user) {
             return redirect()->back()->with('error', 'Email atau Username sudah terdaftar');
