@@ -10,9 +10,13 @@
             </form>
         </div>
 
-        <button class="button-1" role="button">Sign In</button>
-        <br><br><br>
-        <button class="button-2" role="button">Sign Up</button>
+        {{-- button sign in dan sign up href --}}
+        <div class="sign-in">
+            <a class="button-1" href="{{ route('login') }}">Sign In</a>
+        </div>
+        <div class="sign-up">
+            <a class="button-2" href="{{ route('register') }}">Sign Up</a>
+        </div>
     </header>
     <br>
     <br>

@@ -35,7 +35,6 @@ header {
 header .logo h1 {
     color: #002E94;
     font-size: 36px;
-    /* bold prompt */
     font-weight: 600;
     font-family: "Prompt", sans-serif;
 
