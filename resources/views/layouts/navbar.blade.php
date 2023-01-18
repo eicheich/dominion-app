@@ -1,9 +1,39 @@
-{{-- <?php
-use App\Http\Controllers\Client\ClientController;
-$total = ClientController::cartItem();
-?> --}}
+    <header>
+        <input type="checkbox" id="chk1">
+        <div class="logo">
+            <h1>Dominion</h1>
+        </div>
+        <div class="search-box">
+            <form action="">
+                <input type="text" name="search" id="srch" placeholder="Search product">
+                <button type="submit"><i class="fa fa-search"></i class></button>
+            </form>
+        </div>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <button class="button-1" role="button">Sign In</button>
+        <br><br><br>
+        <button class="button-2" role="button">Sign Up</button>
+    </header>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <header>
+        <div class="isi">
+            <ul>
+                <li><a href="#">Balls & Shuttlecocks</a></li>
+                <li><a href="#">Shoes & Sneakers</a></li>
+                <li><a href="#">Jersey & T-Shirt</a></li>
+                <li><a href="#">Gloves</a></li>
+                <li><a href="#">Stick</a></li>
+                <li><a href="#">Racquets</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+
+    {{-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +64,7 @@ $total = ClientController::cartItem();
 
       @endcan
       {{-- jika sudah login tampilkan logout, jika belum tampilkan login --}}
-        @if (Auth::check())
+    {{-- @if (Auth::check())
             <a href="{{ route('logout') }}" class="btn btn-outline-success">Logout</a>
         @else
             <a href="{{ route('login') }}" class="btn btn-outline-success">Login</a>
@@ -46,4 +76,4 @@ $total = ClientController::cartItem();
       </form>
     </div>
   </div>
-</nav>
+</nav> --}}
