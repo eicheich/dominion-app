@@ -62,9 +62,10 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
+      {{-- cart --}}
+        <a href="{{ route('cart.index') }}" class="btn btn-outline-success">Cart</a>
       @can('isAdmin')
         <a href="{{ route('dashboard') }}" class="btn btn-outline-success">Admin</a>
-
       @endcan
       {{-- jika sudah login tampilkan logout, jika belum tampilkan login --}}
     @if (Auth::check())

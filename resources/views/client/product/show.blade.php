@@ -26,16 +26,10 @@
         <p>Price: {{ $product->price }}</p>
         <p>Stock: {{ $product->stock }}</p>
     </div>
-
-    {{-- quantity and size --}}
-    {{-- kalau barang sudah ada update  --}}
-
     <div class="col-md-6">
-        {{-- menambahkan product_id, user_id, size, quantity secara manual --}}
         <form action="{{ route('cart.store') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <div class="form-group">
                 <label for="size">Size</label>
                 <select class="form-control" name="size" id="size">

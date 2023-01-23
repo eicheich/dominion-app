@@ -15,12 +15,13 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        return view('client.cart.index', compact('carts'));
+        return view('client.product.cart', compact('carts'));
     }
 
     public function store(Product $product)
     {
-        $cart = Cart::where('user_id', auth()->user()->id)->first();
+        // $cart = product id
+        $cart = Cart::where('product_id', request()->product_id)->where('user_id', auth()->user()->id)->first();
         // validate
         $this->validate(request(), [
             'quantity' => 'required|numeric',
@@ -52,13 +53,6 @@ class CartController extends Controller
             'quantity' => request()->quantity
         ]);
         Session::flash('success', 'Cart updated successfully');
-        return redirect()->back();
-    }
-
-    public function destroy(Cart $cart)
-    {
-        $cart->delete();
-        Session::flash('success', 'Cart deleted successfully');
         return redirect()->back();
     }
 
