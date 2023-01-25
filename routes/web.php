@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Client\ProfileController;
 use App\Models\Product;
 
 /*
@@ -39,6 +40,13 @@ Route::prefix('auth')->group(function () {
 });
 
 // guest
+
+Route::prefix('profile')->middleware(['auth'])->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+});
+
 Route::prefix('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('landingpage');
     Route::get('/product/{id}', [ClientController::class, 'show'])->name('client.product.show')->middleware(['auth']);
