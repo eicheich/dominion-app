@@ -6,10 +6,6 @@
             {{ session('success') }}
         </div>
     @endif
-    {{-- table cart yang menggunakan checkbox untuk memilih product yang akan di checkout atau delete --}}
-
-    <form action="#" method="POST">
-        @csrf
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -27,7 +23,14 @@
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $cart->product->name }}</td>
                         <td>{{ $cart->product->price }}</td>
-                        <td>{{ $cart->quantity }}</td>
+                        <td>
+                            <form action="{{ route('cart.update', $cart->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="number" name="quantity" value="{{ $cart->quantity }}">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                        </td>
                         <td>{{ $cart->product->price * $cart->quantity }}</td>
                         <td>
                             <input type="checkbox" name="product_id[]" value="{{ $cart->id }}">
@@ -36,6 +39,5 @@
                 @endforeach
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
 @endsection

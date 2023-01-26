@@ -39,13 +39,8 @@ Route::prefix('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-// guest
+Route::resource('profile', ProfileController::class)->middleware(['auth']);
 
-Route::prefix('profile')->middleware(['auth'])->group(function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
-});
 
 Route::prefix('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('landingpage');

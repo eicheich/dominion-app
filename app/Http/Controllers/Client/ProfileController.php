@@ -21,23 +21,29 @@ class ProfileController extends Controller
         return view('client.profile-edit');
     }
 
-    // public function update(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'email' => 'required',
-    //         'phone' => 'required',
-    //         'address' => 'required',
-    //     ]);
+    // update user profile
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gender' => 'required',
+        ]);
 
-    //     $user = auth()->user();
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->phone = $request->phone;
-    //     $user->address = $request->address;
-    //     $user->save();
+        $user = auth()->user();
 
-    //     return redirect()->route('profile')->with('success', 'Profile updated successfully');
-    // }
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->avatar = $request->avatar;
+        $user->gender = $request->gender;
+    }
+
 
 }

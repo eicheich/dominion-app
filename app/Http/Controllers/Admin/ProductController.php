@@ -14,12 +14,12 @@ class ProductController extends Controller
 {
     public function products()
     {
-        // get all products
         $products = Product::all();
-
         return view('admin.products', [
             'products' => $products
         ]);
+
+
     }
     public function create()
     {

@@ -50,7 +50,8 @@ class CartController extends Controller
     public function update(Cart $cart)
     {
         $cart->update([
-            'quantity' => request()->quantity
+            'quantity' => request()->quantity,
+            
         ]);
         Session::flash('success', 'Cart updated successfully');
         return redirect()->back();

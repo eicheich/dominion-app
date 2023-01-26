@@ -7,19 +7,26 @@
     @endif
 
 
-    {{-- {form edit profile --}}
-    <form action="#" method="POST">
+    <form action="{{ route('profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         {{-- avatar --}}
         <div class="form-group">
             <label for="avatar">Avatar</label>
-            <img src="{{ asset('storage/images/products/' . $user->avatar) }}" class="card-img-top" alt="...">
+            {{-- check jika avatar null maka tampilkan image default, jika ada maka tampilkan yang ada --}}
+            <img src="{{ $user->avatar ? asset('storage/images/avatar/'.$user->avatar) : asset('storage/images/avatar/defaultProfile.png') }}"
+                alt="avatar" width="100px" height="100px">
+            <br>
             <input type="file" name="avatar" id="avatar" class="form-control">
         </div>
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}">
+        </div>
+        {{-- username --}}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" value="{{ $user->username }}">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
