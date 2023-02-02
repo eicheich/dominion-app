@@ -16,11 +16,16 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('order_number');
-            $table->string('status');
-            $table->string('payment_status');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->string('order_number', 16)->unique();
+            $table->foreignId('cart_id')->constrained('carts')->onDelete('cascade');
+            $table->integer('quantity');
+            $table->integer('total');
+            $table->string('size', 2);
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone', 13)->nullable();
+            $table->enum('status', ['pending', 'success', 'failed']);
+
         });
     }
 
@@ -31,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('ordeers');
     }
 };
