@@ -26,6 +26,7 @@ class CheckoutController extends Controller
         Order::create([
             'order_number' => 'ORD' . time(),
             'cart_id' => $request->cart_id,
+            'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'total' => $request->quantity * $request->price,
             'size' => $request->size,
@@ -73,10 +74,15 @@ class CheckoutController extends Controller
 
     public function history()
     {
-        $orders = Order::where('cart_id', auth()->user()->id)->first();
-        $transactions = Transaction::where('order_id', $orders->id)->first();
-        return view('client.transaction.history', compact('orders', 'transactions'));
+        // get data order
+        $orders = Order::where('cart_id', auth()->user()->id)->get();
+        return view('client.transaction.history', compact('orders'));
     }
 
-
+    public function detail($id)
+    {
+        //
+        $order = Order::find($id);
+        return view('client.transaction.detail', compact('order'));
+    }
 }
