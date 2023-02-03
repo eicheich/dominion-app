@@ -18,9 +18,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('delivery_number', 16)->unique();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->enum('status', ['confirmed by courier', 'otw', 'delivered']);
-
-
         });
     }
 

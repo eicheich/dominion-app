@@ -23,7 +23,21 @@ class DatabaseSeeder extends Seeder
         //     'is_admin' => 'true'
         // ]);
         // seed category
-        \App\Models\User::factory(1)->create();
+        //    create custom user
+        \App\Models\User::factory()->create([
+            'name' => 'admin',
+            'username' => 'admin',
+            'email' => 'admin@dominion.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'is_admin' => 1,
+        ]);
+        \App\Models\User::factory()->create([
+            'name' => 'admin delivery',
+            'username' => 'adm_delivery',
+            'email' => 'admdelivery@dominion.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'is_admin' => 1,
+        ]);
 
         \App\Models\Category::factory(5)->create();
     }
