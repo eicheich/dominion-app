@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function products()
     {
         $products = Product::with('category')->paginate(2);
-        return view('admin.products', [
+        return view('admin.product.products', [
             'products' => $products
         ]);
     }
@@ -66,7 +66,7 @@ class ProductController extends Controller
         // dapatkan semua categories
         $categories = Category::all();
 
-        return view('admin.edit', [
+        return view('admin.product.edit', [
             'product' => $product,
             'categories' => $categories
         ]);
