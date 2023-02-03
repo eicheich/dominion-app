@@ -13,8 +13,8 @@ class TransactionController extends Controller
 {
     public function payment()
     {
-        $order = Order::where('id', auth()->user()->id)->first();
-
+        // cari order berdasarkan order number
+        $order = Order::where('order_number', request()->order_number)->first();
         return view('client.transaction.payment', compact('order'));
     }
 
@@ -36,7 +36,7 @@ class TransactionController extends Controller
 
         ]);
 
-        Order::where('id', auth()->user()->id)->update([
+        Order::where('id', $request->order_id)->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->phone,
@@ -44,9 +44,9 @@ class TransactionController extends Controller
         ]);
         return redirect()->route('history');
     }
-        public function history()
+    public function history()
     {
-        $orders = Order::where('id', auth()->user()->id)->get();
+        $orders = Order::where('user_id', auth()->user()->id)->get();
         return view('client.transaction.history', compact('orders'));
     }
 
@@ -56,5 +56,4 @@ class TransactionController extends Controller
         $order = Order::find($id);
         return view('client.transaction.detail', compact('order'));
     }
-
 }
