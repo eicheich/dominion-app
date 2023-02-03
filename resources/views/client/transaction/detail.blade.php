@@ -83,6 +83,15 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                {{-- button cancel --}}
+                                @if ($order->status == 'pending')
+                                    <form action="#" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                    </form>
+                                @endif
+
                             </div>
                         </div>
                     </div>
