@@ -13,7 +13,7 @@ class TransactionController extends Controller
 {
     public function payment()
     {
-        $order = Order::where('cart_id', auth()->user()->id)->first();
+        $order = Order::where('id', auth()->user()->id)->first();
 
         return view('client.transaction.payment', compact('order'));
     }
@@ -36,7 +36,7 @@ class TransactionController extends Controller
 
         ]);
 
-        Order::where('cart_id', auth()->user()->id)->update([
+        Order::where('id', auth()->user()->id)->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->phone,

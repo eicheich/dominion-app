@@ -25,13 +25,13 @@
                                         <th>Order Status</th>
                                         <td>
                                             @if ($order->status == 'pending')
-                                                <p class="text-warning bold">{{ $order->status }} </p>
+                                                <p class="text-warning fw-bold">{{ $order->status }} </p>
                                                 <a href="{{ route('payment', $order->order_number) }}"
                                                     class="btn btn-outline-dark">Pay</a>
                                             @elseif ($order->status == 'success')
-                                                <p class="text-success">{{ $order->status }}</p>
-                                            @else
-                                                <p class="text bold">{{ $order->status }}</p>
+                                                <p class="text-success fw-bold">{{ $order->status }}</p>
+                                            @elseif ($order->status == 'payment confirmed')
+                                                <p class="text-success fw-bold">{{ $order->status }}</p>
                                         </td>
                                         @endif
                                     </tr>
@@ -63,8 +63,6 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- jika blm bayar akan ada button pay --}}
-
                         <div class="row">
                             <div class="col-md-12">
                                 <h5>Product</h5>
