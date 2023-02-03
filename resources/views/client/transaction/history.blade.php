@@ -12,7 +12,6 @@
                     </div>
                     <div class="card-body">
                         <h3 class="text-center">You don't have any transaction</h3>
-                        {{-- button buy products --}}
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="{{ route('landingpage') }}" class="btn btn-primary">Buy Products</a>
