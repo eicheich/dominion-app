@@ -20,6 +20,12 @@
               Customers-User
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('landingpage') }}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Back
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

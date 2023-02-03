@@ -10,12 +10,10 @@
         <h2>Product</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            {{-- button dengan href --}}
             <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-secondary">tambah product</a>
           </div>
         </div>
       </div>
-      {{-- buat card product ke samping maksimal 4 lalu akan turun kebawah--}}
         <div class="row row-cols-1 row-cols-md-6 g-4">
             @foreach ($products as $product)
             <div class="col">
@@ -44,13 +42,30 @@
                 </div>
                 </div>
                 </div>
+
             </div>
             @endforeach
         </div>
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+        {{-- {{$products->links()}} --}}.
+        <div class="d-flex justify-content-between align-items-center pt-5">
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{ $products->previousPageUrl() }}" class="btn btn-sm btn-outline-secondary">Previous</a>
+                </div>
+            </div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{ $products->nextPageUrl() }}" class="btn btn-sm btn-outline-secondary">Next</a>
+                </div>
+            </div>
+        </div>
+
     </main>
+
   </div>
 </div>
+
+
 
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

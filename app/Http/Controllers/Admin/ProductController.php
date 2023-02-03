@@ -14,9 +14,7 @@ class ProductController extends Controller
 {
     public function products()
     {
-        // get all products
-        $products = Product::all();
-
+        $products = Product::with('category')->paginate(2);
         return view('admin.products', [
             'products' => $products
         ]);
@@ -25,7 +23,6 @@ class ProductController extends Controller
     {
         // get all categories
         $categories = Category::all();
-
         return view('admin.create', [
             'categories' => $categories
         ]);
@@ -43,7 +40,6 @@ class ProductController extends Controller
             'category_id' => 'required'
         ]);
 
-        // dapatkan image
         $image = $request->file('image');
         $image = $image->hashName();
         $request->file('image')->storeAs('images/products', $image);
