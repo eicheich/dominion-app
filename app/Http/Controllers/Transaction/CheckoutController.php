@@ -21,9 +21,9 @@ class CheckoutController extends Controller
             'quantity' => 'required|integer',
             'size' => 'required|string',
         ]);
-
         // insert
         Order::create([
+            'name' => auth()->user()->name,
             'order_number' => 'ORD' . time(),
             'cart_id' => $request->cart_id,
             'product_id' => $request->product_id,
@@ -32,8 +32,7 @@ class CheckoutController extends Controller
             'size' => $request->size,
             'status' => 'pending',
         ]);
-        // redirect ke halaman pembayaran
-        return redirect()->route('payment');
+        return redirect()->route('history');
     }
 
     public function payment()
@@ -65,7 +64,7 @@ class CheckoutController extends Controller
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->phone,
-            'status' => 'pending',
+            'status' => 'payment confirmed',
         ]);
 
         // redirect ke halaman history

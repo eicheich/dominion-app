@@ -10,7 +10,7 @@
                         <h3>Payment</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('pay') }}" method="POST">
+                        <form action="{{ route('pay', $order->order_number) }}" method="POST">
                             @method('POST')
                             @csrf
                             <div class="form-group">
@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="total">Total</label>
-                                <input type="text" name="total" id="total" class="form-control" value="{{ $order->total }}">
+                                <input type="text" name="total" id="total" class="form-control" value="{{ $order->total }} " readonly>
                             </div>
                             <div class="form-group">
                                 <label for="payment">Payment</label>

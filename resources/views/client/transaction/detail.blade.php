@@ -16,7 +16,7 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Order ID</th>
-                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->order_number }}</td>
                                     </tr>
                                     <tr>
                                         <th>Order Date</th>
@@ -27,18 +27,22 @@
                                         <td>
                                             @if ($order->status == 'pending')
                                                 <p class="text-warning bold">{{ $order->status }} </p>
-                                                <a href="{{ route('pay', $order->id) }}"
+                                                <a href="{{ route('payment', $order->order_number) }}"
                                                     class="btn btn-outline-dark">Pay</a>
                                             @elseif ($order->status == 'success')
-                                        <td class="text-success">{{ $order->status }}</td>
-                                    @else
-                                        <td class="text bold">{{ $order->status }}</td>
+                                                <p class="text-success">{{ $order->status }}</p>
+                                            @else
+                                                <p class="text bold">{{ $order->status }}</p>
                                         </td>
                                         @endif
                                     </tr>
                                     <tr>
-                                        <th>Order Total</th>
+                                        <th>Total</th>
                                         <td>{{ $order->total }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Delivery status</th>
+                                        <td>{{$order->name}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -68,16 +72,16 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
                                             <th>Image</th>
+                                            <th>Name</th>
                                             <th>Category</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $order->product->name }}</td>
                                             <td><img src="{{ asset('storage/images/products/' . $order->product->image) }}"
                                                     alt="product-image" width="200"></td>
+                                            <td>{{ $order->product->name }}</td>
                                             <td>{{ $order->product->category->name }}</td>
                                         </tr>
                                     </tbody>

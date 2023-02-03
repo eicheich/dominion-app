@@ -35,7 +35,7 @@
                     <td>
                         {{-- <input type="checkbox" name="product_id[]" value="{{ $cart->id }}"> --}}
                         {{-- checkout --}}
-                        <form action="{{ route('checkout', $cart->id) }}" method="POST">
+                        <form action="{{ route('checkout') }}" method="POST">
                             @csrf
                             @method('post')
                             <input type="hidden" name="cart_id" value="{{ $cart->id }}">
