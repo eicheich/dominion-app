@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-    {{-- detail order and transaction jangan menggunakan table --}}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -93,4 +92,5 @@
             </div>
         </div>
     </div>
+
 @endsection

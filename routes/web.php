@@ -7,7 +7,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ProfileController;
-use App\Http\Controllers\Transaction\CheckoutController;
+use App\Http\Controllers\Order\CheckoutController;
+use App\Http\Controllers\Order\TransactionController;
+
 // admin
 Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -32,8 +34,8 @@ Route::prefix('')->group(function () {
 Route::resource('cart', CartController::class)->middleware(['auth']);
 Route::prefix('order')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout')->middleware(['auth']);
-    Route::get('/payment/{order_number}', [CheckoutController::class, 'payment'])->name('payment')->middleware(['auth']);
-    Route::post('/pay', [CheckoutController::class, 'pay'])->name('pay')->middleware(['auth']);
-    Route::get('/history', [CheckoutController::class, 'history'])->name('history')->middleware(['auth']);
-    Route::get('/detail/{id}', [CheckoutController::class, 'detail'])->name('detail')->middleware(['auth']);
-}); 
+    Route::get('/payment/{order_number}', [TransactionController::class, 'payment'])->name('payment')->middleware(['auth']);
+    Route::post('/pay', [TransactionController::class, 'pay'])->name('pay')->middleware(['auth']);
+    Route::get('/', [TransactionController::class, 'history'])->name('history')->middleware(['auth']);
+    Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail')->middleware(['auth']);
+});
