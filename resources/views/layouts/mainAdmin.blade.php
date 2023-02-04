@@ -10,10 +10,6 @@
     {{-- my css --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}"> --}}
      <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-
-
-
-    <!-- Bootstrap core CSS -->
 <link href="../assets/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
