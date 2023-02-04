@@ -9,7 +9,7 @@
           </li>
           <li class="nav-item">
             {{-- a href link to route --}}
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('orders.index') }}">
               <span data-feather="file" class="align-text-bottom"></span>
               Orders
             </a>
@@ -18,6 +18,18 @@
             <a class="nav-link" href="#">
               <span data-feather="users" class="align-text-bottom"></span>
               Customers-User
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.deliveries')}}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Delivery
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Cancelation
             </a>
           </li>
           <li class="nav-item">
