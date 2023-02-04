@@ -21,6 +21,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.deliveries')}}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Delivery
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('landingpage') }}">
               <span data-feather="users" class="align-text-bottom"></span>
               Back
