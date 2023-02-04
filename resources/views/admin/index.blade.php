@@ -18,6 +18,13 @@
           </button>
         </div>
       </div>
+      {{-- session flash --}}
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+        
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
     </main>
   </div>

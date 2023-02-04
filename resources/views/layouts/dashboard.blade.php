@@ -9,7 +9,7 @@
           </li>
           <li class="nav-item">
             {{-- a href link to route --}}
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('orders.index') }}">
               <span data-feather="file" class="align-text-bottom"></span>
               Orders
             </a>
