@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class ProductController extends Controller
     public function products()
     {
         $products = Product::with('category')->paginate(2);
-        return view('admin.products', [
+        return view('admin.product.products', [
             'products' => $products
         ]);
     }
@@ -23,12 +24,12 @@ class ProductController extends Controller
     {
         // get all categories
         $categories = Category::all();
-        return view('admin.create', [
+        return view('admin.product.create', [
             'categories' => $categories
         ]);
     }
 
-    public function store (Request $request)
+    public function store(Request $request)
     {
         // validate lalu dapatkan image dan insert ke database
         $request->validate([
@@ -59,20 +60,20 @@ class ProductController extends Controller
         return redirect()->route('products')->with('success', 'Product created successfully');
     }
 
-    public function edit ($id)
+    public function edit($id)
     {
         // dapatkan product berdasarkan id
         $product = Product::findOrFail($id);
         // dapatkan semua categories
         $categories = Category::all();
 
-        return view('admin.edit', [
+        return view('admin.product.edit', [
             'product' => $product,
             'categories' => $categories
         ]);
     }
 
-    public function update (Request $request, $id)
+    public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
 
@@ -107,11 +108,11 @@ class ProductController extends Controller
     }
 
     public function destroy($id)
-{
-  $data = Product::findOrFail($id);
-  Storage::disk('local')->delete($data->image);
-  $data->delete();
+    {
+        $data = Product::findOrFail($id);
+        Storage::disk('local')->delete($data->image);
+        $data->delete();
 
-  return redirect()->route('products')->with('success', 'Data berhasil dihapus.');
-}
+        return redirect()->route('products')->with('success', 'Data berhasil dihapus.');
+    }
 }

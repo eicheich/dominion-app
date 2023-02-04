@@ -1,7 +1,10 @@
 <?php
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\DeliveryController;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\CartController;
@@ -16,8 +19,17 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('/products', [ProductController::class, 'products'])->name('products');
     Route::get('/users', [DashboardController::class, 'users'])->name('users');
 });
+
+Route::get('/deliveries', [DeliveryController::class, 'index'])->name('admin.deliveries')->middleware(['isAdmin']);
+Route::post('/deliveries/{id}/update', [DeliveryController::class, 'updateStatus'])->name('delivery.update.status')->middleware(['isAdmin']);
+Route::resource('products', ProductController::class)->middleware(['isAdmin']);
+Route::resource('orders', OrderController::class)->middleware(['isAdmin']);
+Route::post('/orders/{id}/update', [OrderController::class, 'updateDelivery'])->name('orders.update.delivery')->middleware(['isAdmin']);
+
+
+
+
 // auth
-Route::resource('products', ProductController::class)->middleware(['auth']);
 Route::prefix('auth')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/log', [LoginController::class, 'login'])->name('login.post');
