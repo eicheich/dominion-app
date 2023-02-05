@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-{{-- session message --}}
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+    {{-- session message --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     @if (count($orders) == 0)
         <div class="container">
@@ -48,15 +48,7 @@
                         <td><img src="{{ asset('storage/images/products/' . $order->product->image) }}" alt="product-image"
                                 width="100"></td>
                         <td>{{ $order->total }}</td>
-                        @if ($order->status == 'pending')
-                            <td class="text-warning fw-bold">{{ $order->status }}</td>
-                        @elseif ($order->status == 'success')
-                            <td class="text-success fw-bold">{{ $order->status }}</td>
-                        @elseif ($order->status == 'payment confirmed')
-                            <td class="text-success fw-bold">{{ $order->status }}</td>
-                        @else
-                            <td class="text-danger fw-bold">{{ $order->status }}</td>
-                        @endif
+                        <td class="{{ getOrderStatusClass($order->status) }}">{{ $order->status }}</td>
                         <td>
                             <a href="{{ route('detail', $order->id) }}" class="btn btn-primary">View</a>
                         </td>

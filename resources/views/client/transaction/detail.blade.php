@@ -24,15 +24,8 @@
                                     <tr>
                                         <th>Order Status</th>
 
-                                        @if ($order->status == 'pending')
-                                            <td class="text-warning fw-bold">{{ $order->status }}</td>
-                                        @elseif ($order->status == 'success')
-                                            <td class="text-success fw-bold">{{ $order->status }}</td>
-                                        @elseif ($order->status == 'payment confirmed')
-                                            <td class="text-success fw-bold">{{ $order->status }}</td>
-                                        @else
-                                            <td class="text-danger fw-bold">{{ $order->status }}</td>
-                                        @endif
+                                        <td class="{{ getOrderStatusClass($order->status) }}">{{ $order->status }}</td>
+
                                         {{-- <td class="{{ ($order->status == 'pending') ? 'text-warning fw-bold' : (($order->status == 'success' || $order->status == 'payment confirmed') ? 'text-success fw-bold' : 'text-danger fw-bold') }}">{{ $order->status }}</td> --}}
 
                                     </tr>
@@ -85,16 +78,17 @@
                                     </tbody>
                                 </table>
                                 {{-- jika ada cancellation->order_id yang sama dengan id maka --}}
-                                    @if ($cancellation = App\Models\Cancellation::where('order_id', $order->id)->first())
-                                        <div class="alert alert-danger">
-                                            <p>Cancellation request has been sent</p>
-                                        </div>
+                                @if ($cancellation = App\Models\Cancellation::where('order_id', $order->id)->first())
+                                    <div class="alert alert-danger">
+                                        <p>Cancellation request has been sent</p>
+                                    </div>
+                                @else
+                                    @if ($order->status == 'pending')
+                                        <a href="{{ route('orders.cancel', $order->id) }}"
+                                            class="btn btn-danger">Cancel</a>
                                     @else
-                                        @if ($order->status == 'pending')
-                                            <a href="{{ route('orders.cancel', $order->id) }}" class="btn btn-danger">Cancel</a>
-                                        @else
-                                        @endif
                                     @endif
+                                @endif
 
 
 

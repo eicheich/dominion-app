@@ -16,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        // fungsi getorderstatusclass
+        require_once app_path() . '/Helper/OrderHelper.php';
     }
 
     /**
