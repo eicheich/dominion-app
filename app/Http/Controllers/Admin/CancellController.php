@@ -10,7 +10,12 @@ use App\Models\Order;
 
 class CancellController extends Controller
 {
-    //
+    //index
+    public function index()
+    {
+        $cancellations = Cancellation::all();
+        return view('admin.cancellation.index', compact('cancellations'));
+    }
 
     public function cancel($id)
     {
@@ -29,4 +34,27 @@ class CancellController extends Controller
 
         return redirect()->route('history')->with('success', 'Order cancellation request sent');
     }
+
+    public function approve($id)
+    {
+        Cancellation::where('id', $id)->update([
+            'status' => 'Approved'
+        ]);
+
+        Order::where('order_id', $id)->update([
+            'status' => 'canceled'
+        ]);
+
+        return redirect()->route('admin.index')->with('success', 'Order cancellation request approved');
+    }
+
+    public function reject($id)
+    {
+        // delete cancellation
+        Cancellation::where('id', $id)->delete();
+
+
+        return redirect()->route('admin.index')->with('success', 'Order cancellation request rejected');
+    }
+
 }

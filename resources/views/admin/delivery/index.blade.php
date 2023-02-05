@@ -53,14 +53,6 @@
                                             disabled>Cancelled</button>
                                     @endif
                                 </td>
-                                {{-- <td>
-                            <a href="{{ route('delivery.update.status', $delivery->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a> --}}
-                                {{-- <form action="{{ route('deliveries.destroy', $delivery->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
-                            </form> --}}
-                                {{-- </td> --}}
                             </tr>
                         @endforeach
                 </table>
