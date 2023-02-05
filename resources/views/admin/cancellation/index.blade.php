@@ -31,6 +31,7 @@
                             <th>Total price</th>
                             <th>Reason</th>
                             <th>User</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,19 +44,22 @@
                             <td>{{ $cancellation->order->product->name }}</td>
                             <td>{{ $cancellation->order->total }}</td>
                             <td>{{ $cancellation->reason }}</td>
+                            <td>{{ $cancellation->status }}</td>
                             <td>{{ $cancellation->order->name }}</td>
                             {{-- confirmasi cacnellation atau menolak --}}
                             <td>
-                                <form action="#" method="POST">
+                                <form action="{{route('admin.cancellations.approve', $cancellation->id)}}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-success">Confirm</button>
+                                    <input type="hidden" name="order_id" value="{{ $cancellation->order_id }}">
+                                    <button type="submit" class="btn btn-success">Approve</button>
                                 </form>
-                                <form action="#" method="POST">
+                                <form action="{{route('admin.cancellations.reject',$cancellation->id)}}" method="POST">
                                     @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger ">Reject</button>
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-danger">Reject</button>
                                 </form>
+
                             </td>
                         </tr>
                         @endforeach

@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         //
         // fungsi getorderstatusclass
         require_once app_path() . '/Helper/OrderHelper.php';
+
     }
 
     /**
