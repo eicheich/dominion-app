@@ -52,8 +52,15 @@ class TransactionController extends Controller
 
     public function detail($id)
     {
-        //
         $order = Order::find($id);
         return view('client.transaction.detail', compact('order'));
+    }
+
+    public function confirm($id)
+    {
+        Order::where('id', $id)->update([
+            'status' => 'success',
+        ]);
+        return redirect()->route('history')->with('success', 'Order confirmed');
     }
 }
