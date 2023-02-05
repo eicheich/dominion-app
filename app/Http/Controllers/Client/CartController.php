@@ -51,9 +51,16 @@ class CartController extends Controller
     {
         $cart->update([
             'quantity' => request()->quantity,
-            
+
         ]);
         Session::flash('success', 'Cart updated successfully');
+        return redirect()->back();
+    }
+
+    public function destroy(Cart $cart)
+    {
+        $cart->delete();
+        Session::flash('success', 'Cart deleted successfully');
         return redirect()->back();
     }
 

@@ -5,5 +5,7 @@
     <div class="row">
         {{-- include navbar --}}
         @include('layouts.dashboard')
-        {{-- table --}}
+        {{-- form cancel yang berisi input reason --}}
         
+
+
