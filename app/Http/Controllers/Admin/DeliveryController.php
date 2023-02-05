@@ -12,11 +12,18 @@ class DeliveryController extends Controller
     //
     public function index()
     {
-        $deliveries = Delivery::with('order')->paginate(10);
+        // get data delivery->order->status = shipped dan status = delivered
+        $deliveries = Delivery::whereHas('order', function($query) {
+            $query->where('status', 'shipped')->orWhere('status', 'delivered');
+        })->get();
+
         return view('admin.delivery.index', [
             'deliveries' => $deliveries
         ]);
+
+
     }
+
 
     public function edit($id)
     {
