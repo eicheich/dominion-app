@@ -74,6 +74,14 @@
                                     </tbody>
                                 </table>
                                 {!! getCancellationLink($order) !!}
+                                @if ($order->status == 'delivered')
+                                    <form action="{{route('confirm.orders', $order->id)}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-primary ">Confirm</button>
+                                    </form>
+                                @endif
+
                             </div>
                         </div>
                     </div>

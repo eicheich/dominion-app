@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\DeliveryController;
-
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\CartController;
@@ -21,18 +20,11 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('/products', [ProductController::class, 'products'])->name('products');
     Route::get('/users', [DashboardController::class, 'users'])->name('users');
 });
-
 Route::get('/deliveries', [DeliveryController::class, 'index'])->name('admin.deliveries')->middleware(['isAdmin']);
 Route::post('/deliveries/{id}/update', [DeliveryController::class, 'updateStatus'])->name('delivery.update.status')->middleware(['isAdmin']);
 Route::resource('products', ProductController::class)->middleware(['isAdmin']);
 Route::resource('orders', OrderController::class)->middleware(['isAdmin']);
 Route::post('/orders/{id}/update', [OrderController::class, 'updateDelivery'])->name('orders.update.delivery')->middleware(['isAdmin']);
-
-// route to page cancel
-Route::get('/orders/{id}/cancel', [CancellController::class, 'cancel'])->name('orders.cancel')->middleware(['auth']);
-Route::post('/orders/{id}/cancel', [CancellController::class, 'cancelOrder'])->name('orders.cancellation')->middleware(['auth']);
-
-
 // auth
 Route::prefix('auth')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -54,4 +46,8 @@ Route::prefix('order')->group(function () {
     Route::post('/pay', [TransactionController::class, 'pay'])->name('pay')->middleware(['auth']);
     Route::get('/', [TransactionController::class, 'history'])->name('history')->middleware(['auth']);
     Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail')->middleware(['auth']);
+    Route::put('/confirm/{id}', [TransactionController::class, 'confirm'])->name('confirm.orders')->middleware(['auth']);
+
 });
+Route::get('/orders/{id}/cancel', [CancellController::class, 'cancel'])->name('orders.cancel')->middleware(['auth']);
+Route::post('/orders/{id}/cancel', [CancellController::class, 'cancelOrder'])->name('orders.cancellation')->middleware(['auth']);
