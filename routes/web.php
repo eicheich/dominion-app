@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\CancellController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -26,7 +28,9 @@ Route::resource('products', ProductController::class)->middleware(['isAdmin']);
 Route::resource('orders', OrderController::class)->middleware(['isAdmin']);
 Route::post('/orders/{id}/update', [OrderController::class, 'updateDelivery'])->name('orders.update.delivery')->middleware(['isAdmin']);
 
-
+// route to page cancel
+Route::get('/orders/{id}/cancel', [CancellController::class, 'cancel'])->name('orders.cancel')->middleware(['auth']);
+Route::post('/orders/{id}/cancel', [CancellController::class, 'cancelOrder'])->name('orders.cancellation')->middleware(['auth']);
 
 
 // auth

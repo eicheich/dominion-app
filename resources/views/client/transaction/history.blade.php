@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+{{-- session message --}}
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
     @if (count($orders) == 0)
         <div class="container">

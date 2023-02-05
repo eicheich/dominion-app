@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Cancellation;
 use App\Models\Transaction;
 
 class CheckoutController extends Controller
@@ -45,8 +46,12 @@ class CheckoutController extends Controller
     }
     public function history()
     {
-        $orders = Order::where('cart_id', auth()->user()->id)->get();
-        return view('client.transaction.history', compact('orders'));
+       $orders = Order::where('user_id', auth()->user()->id)->get();
+    //    check if order has cancellation
+        $cancellations = Cancellation::where('user_id', auth()->user()->id)->get();
+
+       return view('client.transaction.history', compact('orders', 'cancellations', 'transactions'));
+
     }
 
     public function detail($id)
