@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('cancellation_number', 16)->unique();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->string('reason', 255);
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
         });
     }
 

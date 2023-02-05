@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.cancellations')}}">
               <span data-feather="users" class="align-text-bottom"></span>
               Cancelation
             </a>

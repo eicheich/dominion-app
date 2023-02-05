@@ -10,7 +10,12 @@ use App\Models\Order;
 
 class CancellController extends Controller
 {
-    //
+    //index
+    public function index()
+    {
+        $cancellations = Cancellation::all();
+        return view('admin.cancellation.index', compact('cancellations'));
+    }
 
     public function cancel($id)
     {

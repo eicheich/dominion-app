@@ -80,7 +80,14 @@
                                         @method('PUT')
                                         <button type="submit" class="btn btn-primary ">Confirm</button>
                                     </form>
+                                @elseif ($order->status == 'pending')
+                                    {{-- button pay --}}
+                                    <form action="{{route('payment', $order->order_number)}}" method="GET">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary ">Pay</button>
+                                    </form>
                                 @endif
+
 
                             </div>
                         </div>
