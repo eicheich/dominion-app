@@ -23,11 +23,7 @@
                                     </tr>
                                     <tr>
                                         <th>Order Status</th>
-
                                         <td class="{{ getOrderStatusClass($order->status) }}">{{ $order->status }}</td>
-
-                                        {{-- <td class="{{ ($order->status == 'pending') ? 'text-warning fw-bold' : (($order->status == 'success' || $order->status == 'payment confirmed') ? 'text-success fw-bold' : 'text-danger fw-bold') }}">{{ $order->status }}</td> --}}
-
                                     </tr>
                                     <tr>
                                         <th>Total</th>
@@ -77,26 +73,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                {{-- jika ada cancellation->order_id yang sama dengan id maka --}}
-                                @if ($cancellation = App\Models\Cancellation::where('order_id', $order->id)->first())
-                                    <div class="alert alert-danger">
-                                        <p>Cancellation request has been sent</p>
-                                    </div>
-                                @else
-                                    @if ($order->status == 'pending')
-                                        <a href="{{ route('orders.cancel', $order->id) }}"
-                                            class="btn btn-danger">Cancel</a>
-                                    @else
-                                    @endif
-                                @endif
-
-
-
-
-                                {{-- @if ($order->status == 'pending' || $order->status == 'payment confirmed')
-                                    <a href="{{ route('orders.cancel', $order->id) }}" class="btn btn-danger">Cancel</a>
-                                @else
-                                @endif --}}
+                                {!! getCancellationLink($order) !!}
                             </div>
                         </div>
                     </div>

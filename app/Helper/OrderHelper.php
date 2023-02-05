@@ -12,4 +12,18 @@ function getOrderStatusClass($status)
             return 'text-danger fw-bold';
     }
 }
-?>
+
+function getCancellationLink($order)
+{
+    $cancellation = App\Models\Cancellation::where('order_id', $order->id)->first();
+    if ($cancellation) {
+        return '<div class="alert alert-danger">
+<p>Cancellation request has been sent</p>
+</div>';
+    } else {
+        if ($order->status == 'pending') {
+            return '<a href="' . route('orders.cancel', $order->id) . '" class="btn btn-danger">Cancel</a>';
+        }
+    }
+    return '';
+}

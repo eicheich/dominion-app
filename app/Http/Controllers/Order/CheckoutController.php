@@ -49,9 +49,6 @@ class CheckoutController extends Controller
     {
 
         $orders = Order::where('user_id', auth()->user()->id)->get();
-        
-
-
         $cancellations = Cancellation::where('user_id', auth()->user()->id)->get();
 
         return view('client.transaction.history', compact('orders', 'cancellations'));
