@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -22,27 +25,36 @@ class ProfileController extends Controller
     }
 
     // update user profile
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $user = user::find($id);
+        $request -> validate([
             'name' => 'required',
-            'username' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gender' => 'required',
+            'image' => 'image'
         ]);
 
-        $user = auth()->user();
+        // check if image is uploaded
+        if ($request->hasFile('image')) {
+            Storage::delete('public/images/avatar/' . $user->image);
+            $image = $request->file('image');
+            $image = $image->hashName();
+            $request->file('image')->storeAs('images/users', $image, 'public');
+        } else {
+            $image = $user->image;
+        }
 
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->avatar = $request->avatar;
-        $user->gender = $request->gender;
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'image' => $image       
+        ]);
+
+
     }
 
 
