@@ -44,23 +44,29 @@
                             <td>{{ $cancellation->order->product->name }}</td>
                             <td>{{ $cancellation->order->total }}</td>
                             <td>{{ $cancellation->reason }}</td>
-                            <td>{{ $cancellation->status }}</td>
                             <td>{{ $cancellation->order->name }}</td>
+                            <td>{{ $cancellation->status }}</td>
                             {{-- confirmasi cacnellation atau menolak --}}
+                            {{-- jika status pending maka muncul button --}}
+                            @if ($cancellation->status == 'pending')
                             <td>
-                                <form action="{{route('admin.cancellations.approve', $cancellation->id)}}" method="POST">
+                                <form action="{{ route('admin.cancellations.approve', $cancellation->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <input type="hidden" name="order_id" value="{{ $cancellation->order_id }}">
-                                    <button type="submit" class="btn btn-success">Approve</button>
+                                    <button type="submit" class="btn btn-success">Confirm</button>
                                 </form>
-                                <form action="{{route('admin.cancellations.reject',$cancellation->id)}}" method="POST">
+                                <form action="{{ route('admin.cancellations.reject', $cancellation->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <button type="submit" class="btn btn-danger">Reject</button>
                                 </form>
-
                             </td>
+                            @else
+                            <td>
+                                <button disabled>{{ $cancellation->status }}</button>
+                            </td>
+                            @endif
+
                         </tr>
                         @endforeach
                     </tbody>

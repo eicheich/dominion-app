@@ -35,17 +35,17 @@ class CancellController extends Controller
         return redirect()->route('history')->with('success', 'Order cancellation request sent');
     }
 
-    public function approve($id)
+    public function approve($id, Request $request)
     {
         Cancellation::where('id', $id)->update([
-            'status' => 'Approved'
+            'status' => 'approved'
         ]);
 
-        Order::where('order_id', $id)->update([
+        Order::where('id', $request->order_id)->update([
             'status' => 'canceled'
         ]);
 
-        return redirect()->route('admin.index')->with('success', 'Order cancellation request approved');
+        return redirect()->route('dashboard')->with('success', 'Order cancellation request approved');
     }
 
     public function reject($id)

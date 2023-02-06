@@ -16,15 +16,27 @@ function getOrderStatusClass($status)
 
 function getCancellationLink($order)
 {
-    $cancellation = App\Models\Cancellation::where('order_id', $order->id)->first();
-    if ($cancellation) {
+    $cancellation = App\Models\Cancellation::where('order_id', $order->id )->first();
+    if ($order->status == 'canceled') {
+        return '
+        <div class="alert alert-danger">
+             <p>Order has been canceled</p>
+        </div>';
+    }
+    elseif ($cancellation ) {
         return '
         <div class="alert alert-danger">
              <p>Cancellation request has been sent</p>
         </div>';
-    } else {
+    
+    // jika status cancellationnya approved maka mucncul alert
+    }
+    else {
         if ($order->status == 'pending') {
-            return '<a href="' . route('orders.cancel', $order->id) . '" class="btn btn-danger">Cancel</a>';
+            return '<a href="' . route('orders.cancel', $order->id) . '" class="btn btn-danger">Cancel</a>
+            <form action="' . route('payment', $order->order_number) . '" method="GET">
+                <button type="submit" class="btn btn-success">Pay</button>
+            </form>';
         }
     }
     return '';
