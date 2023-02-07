@@ -47,7 +47,7 @@
         </div>
     </nav> --}}
 
-    <nav class="navbar">
+    <header class="navbar">
         <a href="#" class="navbar-logo">Dominion</a>
         <div class="navbar-mid">
             <div class="navbar-search">
@@ -64,4 +64,4 @@
                  <a href="{{ route('dashboard') }}" id="menu"><i data-feather="tool"></i></a>
             @endcan
         </div>
-    </nav>
+    </header>
