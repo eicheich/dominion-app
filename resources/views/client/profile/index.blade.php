@@ -13,7 +13,6 @@
         {{-- avatar --}}
         <div class="form-group">
             <label for="avatar">Avatar</label>
-            {{-- check jika avatar null maka tampilkan image default, jika ada maka tampilkan yang ada --}}
             <img src="{{ $user->avatar ? asset('storage/images/avatar/'.$user->avatar) : asset('storage/images/avatar/defaultProfile.png') }}"
                 alt="avatar" width="100px" height="100px">
             <br>
@@ -72,5 +71,10 @@
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
+    </form>
+    {{-- logout --}}
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
     </form>
     @endsection
