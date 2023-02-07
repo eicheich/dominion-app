@@ -35,7 +35,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/log', [LoginController::class, 'login'])->name('login.post');
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/reg', [RegisterController::class, 'register'])->name('register.post');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 // client
 Route::resource('profile', ProfileController::class)->middleware(['auth']);
@@ -45,12 +45,12 @@ Route::prefix('')->group(function () {
 });
 Route::resource('cart', CartController::class)->middleware(['auth']);
 Route::prefix('order')->group(function () {
-    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout')->middleware(['auth']);
-    Route::get('/payment/{order_number}', [TransactionController::class, 'payment'])->name('payment')->middleware(['auth']);
-    Route::post('/pay', [TransactionController::class, 'pay'])->name('pay')->middleware(['auth']);
-    Route::get('/', [TransactionController::class, 'history'])->name('history')->middleware(['auth']);
-    Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail')->middleware(['auth']);
-    Route::put('/confirm/{id}', [TransactionController::class, 'confirm'])->name('confirm.orders')->middleware(['auth']);
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/payment/{order_number}', [TransactionController::class, 'payment']);
+    Route::post('/pay', [TransactionController::class, 'pay'])->name('pay');
+    Route::get('/', [TransactionController::class, 'history'])->name('history');
+    Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail');
+    Route::put('/confirm/{id}', [TransactionController::class, 'confirm'])->name('confirm.orders');
 });
 Route::get('/orders/{id}/cancel', [CancellController::class, 'cancel'])->name('orders.cancel')->middleware(['auth']);
 Route::post('/orders/{id}/cancel', [CancellController::class, 'cancelOrder'])->name('orders.cancellation')->middleware(['auth']);

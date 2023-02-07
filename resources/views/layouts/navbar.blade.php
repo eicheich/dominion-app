@@ -1,42 +1,4 @@
-    {{-- <header>
-        <input type="checkbox" id="chk1">
-        <div class="logo">
-            <h1>Dominion</h1>
-        </div>
-        <div class="search-box">
-            <form action="">
-                <input type="text" name="search" id="srch" placeholder="Search product">
-                <button type="submit"><i class="fa fa-search"></i class></button>
-            </form>
-        </div>
-
-        <div class="sign-in">
-            <a class="button-1" href="{{ route('login') }}">Sign In</a>
-        </div>
-        <div class="sign-up">
-            <a class="button-2" href="{{ route('register') }}">Sign Up</a>
-        </div>
-    </header>
-    <br>
-    <br>
-    <br>
-    <hr>
-    <header>
-        <div class="isi">
-            <ul>
-                <li><a href="#">Balls & Shuttlecocks</a></li>
-                <li><a href="#">Shoes & Sneakers</a></li>
-                <li><a href="#">Jersey & T-Shirt</a></li>
-                <li><a href="#">Gloves</a></li>
-                <li><a href="#">Stick</a></li>
-                <li><a href="#">Racquets</a></li>
-            </ul>
-        </div>
-    </header>
- --}}
-
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    {{-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -66,7 +28,6 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
-                {{-- cart --}}
                 <a href="{{ route('cart.index') }}" class="btn btn-outline-success">Cart</a>
                 @can('isAdmin')
                     <a href="{{ route('dashboard') }}" class="btn btn-outline-success">Admin</a>
@@ -83,5 +44,24 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
+        </div>
+    </nav> --}}
+
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">Dominion</a>
+        <div class="navbar-mid">
+            <div class="navbar-search">
+                <input type="text" placeholder="Search">
+                <a href="#">
+                    <i data-feather="search"></i>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ route('cart.index') }}" id="menu"><i data-feather="shopping-cart"></i></a>
+            <a href="{{ route('profile.index') }}" id="menu"><i data-feather="user"></i></a>
+            @can('isAdmin')
+                 <a href="{{ route('dashboard') }}" id="menu"><i data-feather="tool"></i></a>
+            @endcan
         </div>
     </nav>

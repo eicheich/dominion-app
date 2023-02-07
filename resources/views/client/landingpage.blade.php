@@ -15,10 +15,10 @@
 @section('content')
 
 {{-- card product ke samping 5 dan seterusnya ke bawah --}}
-<div class="row row-cols-1 row-cols-md-5 g-4 pt-5">
+<div class="row row-cols-1 row-cols-md-5 g-4 pt-5 mt-5">
     @foreach ($products as $product)
         <div class="col">
-            <div class="card">
+            <div class="card">  
                 <a href="{{ route('client.product.show', $product->id) }}">
                 <img src="{{ asset('storage/images/products/' . $product->image) }}" class="card-img-top" alt="...">
                 <div class="card-body">
