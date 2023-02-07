@@ -1,6 +1,7 @@
 :root {
     --primary-color: #002E94;
     --bg: #F4F4F6;
+    --sec-color: #010101;
 }
 
 html {
@@ -81,3 +82,116 @@ body {
     color: var(--primary-color);
     margin: 0 0.5rem;
 }
+
+
+.col .card {
+    border: var(--bg);
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 0.6rem;
+    padding-top: 1rem;
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    /*
+    padding-bottom: 0%; */
+    /* box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); */
+    transition: all 0.2s ease-in-out;
+}
+
+.row-lp {
+    display: grid;
+    grid-template-columns: repeat(5, 2fr);
+    grid-gap: 2rem;
+
+    padding: 0 2%;
+    margin-top: 10rem;
+
+}
+
+.col .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+}
+
+.col .card .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.6rem;
+}
+
+.col .card a {
+    color: var(--sec-color);
+    text-decoration: none;
+}
+
+.col .card .card-body {
+    display: block;
+    text-align: start;
+}
+
+.col .card .card-body .card-head {
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.col .card .card-body .card-head .badge {
+    width: 30%;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.2);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.4rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.col .card .card-body .card-head .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.col .card .card-body .card-head .card-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #777;
+}
+
+.col .card .card-body .card-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--sec-color);
+}
+
+@media screen and (max-width: 1200px) {
+    .row-lp {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* responsive card tablet  */
+@media screen and (max-width: 992px) {
+    .row-lp {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* responsive card mobile  */
+@media screen and (max-width: 768px) {
+    .row-lp {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .col .card .card-body .card-head .card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+}
+
+

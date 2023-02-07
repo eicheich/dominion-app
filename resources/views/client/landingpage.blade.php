@@ -13,22 +13,24 @@
 <script src="dashboard.js"></script>
 
 @section('content')
-
-{{-- card product ke samping 5 dan seterusnya ke bawah --}}
-<div class="row row-cols-1 row-cols-md-5 g-4 pt-5 mt-5">
-    @foreach ($products as $product)
-        <div class="col">
-            <div class="card">  
-                <a href="{{ route('client.product.show', $product->id) }}">
-                <img src="{{ asset('storage/images/products/' . $product->image) }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $product->name }}</h5>
-                    <p class="card-text">Stock: {{ $product->stock }}</p>
-                    <p class="card-text">Price: ${{ $product->price }}</p>
+    {{-- card product ke samping 5 dan seterusnya ke bawah --}}
+    <div class="row-lp">
+        @foreach ($products as $product)
+            <div class="col">
+                <div class="card">
+                    <a href="{{ route('client.product.show', $product->id) }}">
+                        <img src="{{ asset('storage/images/products/' . $product->image) }}" class="card-img-top"
+                            alt="...">
+                        <div class="card-body">
+                            <div class="card-head">
+                                <span class="badge">Hot</span>
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <p class="card-subtitle">{{ $product->category->name }}</p>
+                            </div>
+                            <p class="card-price">$. {{ number_format($product->price) }}</p>
+                        </div>
+                    </a>
                 </div>
-                </a>
             </div>
-        </div>
-    @endforeach
-
+        @endforeach
     @endsection
