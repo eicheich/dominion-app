@@ -8,26 +8,22 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    <link href="../assets/css/dashboard.css" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <script src="https://unpkg.com/feather-icons"></script>
-<body>
-    @include('layouts.navadmin')
-            @include('layouts.dashboard')
+@include('layouts.navadmin')
+@include('layouts.dashboard')
 
-    <div class="container-fluid">
-        <div class="row">
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                @yield('content')
-            </main>
-        </div>
-    @yield('content')
+<body>
+
+
+    <div class="container">
+        @yield('content')
+    </div>
     <script>
-      feather.replace();
+        feather.replace();
     </script>
 </body>
+
 </html>
