@@ -108,7 +108,7 @@ body {
     font-weight: 700;
 }
 
-.col-nav .position-sticky .nav .nav-item .nav-link.active {
+.col-nav .position-sticky .nav .nav-item .active {
     color: var(--primary-color);
     font-weight: 700;
 }
@@ -142,8 +142,7 @@ body {
 
 
 .table-product {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 3rem;
+    margin-top: 2rem;
     width: 100%;
     background-color: #fff;
 }
@@ -172,8 +171,7 @@ body {
 }
 
 .table-product tbody tr {
-    border: 1px solid #bdbdbd;
-
+    border: 0.5rem solid var(--bg);
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
@@ -240,3 +238,68 @@ body {
     background-color: var(--primary-color);
 }
 
+.height-admin {
+    margin-top: 3rem;
+}
+
+.table-detail {
+    margin-top: 3rem;
+    width: 100%;
+    background-color: #fff;
+}
+
+.table-detail tr {
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    height: 3rem;
+    color: #000;
+    border: 0.5rem solid var(--bg);
+}
+
+.table-detail tr td {
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.color-black {
+    color: #000;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.table-infouser {
+    width: 100%;
+    background-color: #fff;
+}
+
+.table-infouser tr {
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    height: 3rem;
+    color: #000;
+    border: 0.5rem solid var(--bg);
+}
+
+.table-infouser tr th {
+    padding: 1rem 0;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.table-infouser tr td {
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.text-dec{
+    text-decoration: none;
+}
