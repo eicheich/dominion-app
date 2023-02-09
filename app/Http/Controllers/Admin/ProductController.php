@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     public function products()
     {
-        $products = Product::with('category')->paginate(2);
+        $products = Product::with('category')->paginate(5);
         return view('admin.product.products', [
             'products' => $products
         ]);

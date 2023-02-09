@@ -12,7 +12,6 @@ class DeliveryController extends Controller
     //
     public function index()
     {
-        // get data delivery->order->status = shipped dan status = delivered
         $deliveries = Delivery::whereHas('order', function($query) {
             $query->where('status', 'shipped')->orWhere('status', 'delivered');
         })->get();

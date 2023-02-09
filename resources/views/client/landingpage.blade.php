@@ -13,7 +13,6 @@
 <script src="dashboard.js"></script>
 
 @section('content')
-    {{-- card product ke samping 5 dan seterusnya ke bawah --}}
     <div class="row-lp">
         @foreach ($products as $product)
             <div class="col">

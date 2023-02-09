@@ -50,4 +50,16 @@
                     @endforeach
                 </tbody>
             </table>
-        @endsection
+            <div class="d-flex justify-content-between align-items-center pt-5">
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{ $products->previousPageUrl() }}" class="btn btn-sm btn-outline-secondary">Previous</a>
+                </div>
+            </div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{ $products->nextPageUrl() }}" class="btn btn-sm btn-outline-secondary">Next</a>
+                </div>
+            </div>
+        </div>
+ @endsection

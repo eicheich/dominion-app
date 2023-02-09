@@ -43,6 +43,9 @@ Route::prefix('')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('landingpage');
     Route::get('/product/{id}', [ClientController::class, 'show'])->name('client.product.show')->middleware(['auth']);
 });
+Route::get('/search', [ClientController::class, 'search'])->name('search');
+Route::get('/category/{id}', [ClientController::class, 'category'])->name('category.search');
+
 Route::resource('cart', CartController::class)->middleware(['auth']);
 Route::prefix('order')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
