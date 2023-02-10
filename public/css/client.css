@@ -52,6 +52,7 @@ body {
     align-items: center;
     color: var(--primary-color);
 }
+
 .navbar-under .navbar-under-item a {
     text-align: center;
     font-weight: 600;
@@ -206,16 +207,30 @@ body {
     color: var(--sec-color);
 }
 
-@media screen and (max-width: 1200px) {
+
+
+@media screen and (max-width: 1055px) {
     .row-lp {
         grid-template-columns: repeat(4, 1fr);
     }
+
+    .navbar-under .navbar-under-item a {
+        margin: 0 4rem;
+        font-size: 80%;
+
+    }
+
 }
 
 /* responsive card tablet  */
 @media screen and (max-width: 992px) {
     .row-lp {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .navbar-under .navbar-under-item a {
+        margin: 0 2rem;
+        font-size: 70%;
     }
 }
 

@@ -26,7 +26,6 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
             return redirect()->route('landingpage');
         } else {
             return redirect()->route('login')->with('error', 'Username or Password is Wrong');
