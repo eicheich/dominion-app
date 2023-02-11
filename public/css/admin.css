@@ -303,3 +303,9 @@ body {
 .text-dec{
     text-decoration: none;
 }
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

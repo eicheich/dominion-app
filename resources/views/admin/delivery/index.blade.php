@@ -1,4 +1,4 @@
-@extends('layouts.mainAdmin')
+{{-- @extends('layouts.mainAdmin')
 @include('layouts.navadmin')
 
 <div class="container-fluid">
@@ -110,3 +110,70 @@
     </div>
     </div>
 @endsection --}}
+
+@extends('layouts.mainAdmin')
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row-product">
+                <h3>Delivery data</h3>
+                <div class="search-filter">
+                    <div class="col">
+                        <form action="{{ route('search.filter.delivery') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <select name="filter" id="filter" class="form-select" aria-label="Default select example">
+                                    <option value="all" selected>All</option>
+                                    <option value="shipped">On delivery</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="Search by delivery number"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table-product">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Order Number</th>
+                    <th>Product</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($deliveries as $delivery)
+                    <tr>
+                        <td>{{ $delivery->delivery_number }}</td>
+                        <td>{{ $delivery->order->name }}</td>
+                        <td>{{ $delivery->order->total }}</td>
+                        <td>{{ $delivery->order->total }}</td>
+                        <td>
+                            @if ($delivery->order->status == 'shipped')
+                                <form action="{{ route('delivery.update.status', $delivery->order_id) }}" class="flex"
+                                    method="POST">
+                                    @csrf
+                                    @method('POST')
+                                    <select name="status" class="form-select form-select-sm " id="status">
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">update</button>
+                                </form>
+                            @elseif ($delivery->order->status == 'delivered')
+                                <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Delivered</button>
+                            @else
+                                <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Cancelled</button>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    </div>
+@endsection

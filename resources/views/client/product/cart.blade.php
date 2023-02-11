@@ -55,6 +55,11 @@
                         </td>
                         <td>{{ $cart->product->price * $cart->quantity }}</td>
                         <td>
+                            <form action="{{ route('cart.destroy', $cart->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                             <form action="{{ route('checkout') }}" method="POST">
                                 @csrf
                                 @method('post')
@@ -66,11 +71,6 @@
                                 <input type="hidden" name="size" value="{{ $cart->size }}">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <button type="submit" class="btn btn-warning">Checkout</button>
-                            </form>
-                            <form action="{{ route('cart.destroy', $cart->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>

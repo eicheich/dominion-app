@@ -39,4 +39,21 @@ class DeliveryController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Delivery status updated');
     }
+
+    public function search (Request $request) {
+        if ($request->search == '') {
+            $deliveries = Delivery::whereHas('order', function ($query) use ($request) {
+                $query->where('status', $request->filter);
+            })->get();
+        } else {
+            $deliveries = Delivery::whereHas('order', function ($query) use ($request) {
+                $query->where('status', $request->filter);
+            })->where('delivery_number', 'like', '%' . $request->search . '%')->get();
+        }
+
+        return view('admin.delivery.index', [
+            'deliveries' => $deliveries
+        ]);
+
+    }
 }

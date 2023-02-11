@@ -19,13 +19,19 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProductController::class, 'products'])->name('products');
     Route::get('/users', [DashboardController::class, 'users'])->name('users');
-    Route::get('/deliveries', [DeliveryController::class, 'index'])->name('admin.deliveries');
-    Route::post('/deliveries/{id}/update', [DeliveryController::class, 'updateStatus'])->name('delivery.update.status');
+    Route::prefix('deliveries')->group(function () {
+        Route::get('/', [DeliveryController::class, 'index'])->name('admin.deliveries');
+        Route::post('/{id}/update', [DeliveryController::class, 'updateStatus'])->name('delivery.update.status');
+        Route::get('/search', [DeliveryController::class, 'search'])->name('search.filter.delivery');
+    });
     Route::post('/orders/{id}/update', [OrderController::class, 'updateDelivery'])->name('orders.update.delivery');
-    Route::get('/cancellations', [CancellController::class, 'index'])->name('admin.cancellations');
-    Route::put('/cancellations/{id}/approve', [CancellController::class, 'approve'])->name('admin.cancellations.approve');
-    Route::put('/cancellations/{id}/reject', [CancellController::class, 'reject'])->name('admin.cancellations.reject');
+    Route::prefix('cancellations')->group(function () {
+        Route::get('/', [CancellController::class, 'index'])->name('admin.cancellations');
+        Route::put('/{id}/approve', [CancellController::class, 'approve'])->name('admin.cancellations.approve');
+        Route::put('/{id}/reject', [CancellController::class, 'reject'])->name('admin.cancellations.reject');
+    });
 });
+
 Route::resource('products', ProductController::class)->middleware(['isAdmin']);
 Route::resource('orders', OrderController::class)->middleware(['isAdmin']);
 
