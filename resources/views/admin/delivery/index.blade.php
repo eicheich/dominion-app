@@ -141,7 +141,7 @@
                     <th>Id</th>
                     <th>Order Number</th>
                     <th>Product</th>
-                    <th>Total</th>
+                    <th>Qty</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -150,15 +150,15 @@
                     <tr>
                         <td>{{ $delivery->delivery_number }}</td>
                         <td>{{ $delivery->order->name }}</td>
-                        <td>{{ $delivery->order->total }}</td>
-                        <td>{{ $delivery->order->total }}</td>
+                        <td>{{ $delivery->order->product->name }}</td>
+                        <td>{{ $delivery->order->quantity }}</td>
                         <td>
                             @if ($delivery->order->status == 'shipped')
                                 <form action="{{ route('delivery.update.status', $delivery->order_id) }}" class="flex"
                                     method="POST">
                                     @csrf
                                     @method('POST')
-                                    <select name="status" class="form-select form-select-sm " id="status">
+                                    <select name="status" class="form-select form-select" id="status">
                                         <option value="shipped">Shipped</option>
                                         <option value="delivered">Delivered</option>
                                     </select>
@@ -167,7 +167,7 @@
                             @elseif ($delivery->order->status == 'delivered')
                                 <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Delivered</button>
                             @else
-                                <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Cancelled</button>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Success</button>
                             @endif
                         </td>
                     </tr>
