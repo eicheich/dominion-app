@@ -26,6 +26,7 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     });
     Route::post('/orders/{id}/update', [OrderController::class, 'updateDelivery'])->name('orders.update.delivery');
     Route::prefix('cancellations')->group(function () {
+        Route::get('/search', [CancellController::class, 'search'])->name('search.filter.cancell');
         Route::get('/', [CancellController::class, 'index'])->name('admin.cancellations');
         Route::put('/{id}/approve', [CancellController::class, 'approve'])->name('admin.cancellations.approve');
         Route::put('/{id}/reject', [CancellController::class, 'reject'])->name('admin.cancellations.reject');

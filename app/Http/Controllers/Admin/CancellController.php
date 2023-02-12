@@ -50,11 +50,23 @@ class CancellController extends Controller
 
     public function reject($id)
     {
-        // delete cancellation
         Cancellation::where('id', $id)->delete();
-
-
         return redirect()->route('admin.index')->with('success', 'Order cancellation request rejected');
+    }
+
+    public function search(Request $request)
+    {
+        //  buat 3 kondisi, 1 jika filter = all maka tampilkan semua data, 2 jika search kosong maka data sesuai filter, 3 cari sesuai search
+        if ($request->filter == 'all' && $request->search == '') {
+            $cancellations = Cancellation::all();
+        } else if ($request->search == '') {
+            $cancellations = Cancellation::where('status', $request->filter)->get();
+        } else {
+            $cancellations = Cancellation::where('cancellation_number', 'like', '%' . $request->search . '%')->get();
+        }
+
+        return view('admin.cancellation.index', compact('cancellations'));
+
     }
 
 }

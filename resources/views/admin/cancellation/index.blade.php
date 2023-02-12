@@ -74,6 +74,76 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            
+            <div class="row-product">
+                <h3>Cancellation data</h3>
+                <div class="search-filter">
+                    <div class="col">
+                        <form action="{{ route('search.filter.cancell') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <select name="filter" id="filter" class="form-select" aria-label="Default select example">
+                                    <option value="all" selected>All</option>
+                                    <option value="rejected">Rejected</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="pending">Pending</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="Search by cancellations number"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+        <table class="table-product">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cancellation number</th>
+                    <th>Product name</th>
+                    <th>Total price</th>
+                    <th>Reason</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cancellations as $cancellation)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $cancellation->cancellation_number }}</td>
+                        <td>{{ $cancellation->order->product->name }}</td>
+                        <td>{{ $cancellation->order->total }}</td>
+                        <td>{{ $cancellation->reason }}</td>
+                        <td>{{ $cancellation->order->name }}</td>
+                        <td>{{ $cancellation->status }}</td>
+                        @if ($cancellation->status == 'pending')
+                            <td>
+                                <form action="{{ route('admin.cancellations.approve', $cancellation->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                </form>
+                                <form action="{{ route('admin.cancellations.reject', $cancellation->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-success">Reject</button>
+                                </form>
+                            </td>
+                        @else
+                            <td>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>{{ $cancellation->order->status }}</button>
+
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </tbody>
+
+
+
+
     </div>
+    </div>
+@endsection
