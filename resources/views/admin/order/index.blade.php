@@ -1,59 +1,61 @@
 @extends('layouts.mainAdmin')
-@include('layouts.navadmin')
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row-product">
+                <h3>Order data</h3>
+                <div class="search-filter">
+                    <div class="col">
+                        <form action="{{ route('search.order') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search by order number"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
 
-<div class="container-fluid">
-    <div class="row">
-        {{-- include navbar --}}
-        @include('layouts.dashboard')
-        {{-- table --}}
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard Admin</h1>
-                <h2>Order</h2>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        {{-- <a href="{{ route('orders.create') }}" class="btn btn-sm btn-outline-secondary">tambah order</a> --}}
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th class="fs-5">Image</th>
-                            <th class="fs-5">Product</th>
-                            <th class="fs-5">Customer</th>
-                            <th class="fs-5">Quantity</th>
-                            <th class="fs-5">Status</th>
-                            <th class="fs-5">Subtotal</th>
-                            <th class="fs-5">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($orders as $order)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td><img src="{{ asset('storage/images/products/' . $order->product->image) }}"
-                                        alt="" width="100px"></td>
-                                <td class="fs-5">{{ $order->product->name }}</td>
-                                <td class="fs-5">{{ $order->user->name }}</td>
-                                <td class="fs-5">{{ $order->quantity }}</td>
-                                <td class="{{ getOrderStatusClass($order->status) }}">{{ $order->status }}</td>
-                                <td class="fs-5   ">{{ $order->total }}</td>
-                                <td>
-                                    {{-- button view --}}
-                                    <a href="{{ route('orders.show', $order->id) }}"
-                                        class="btn btn-m btn-outline-danger">view</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        </div>
+        <table class="table-product height-admin">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Order number</th>
+                    <th>Name</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orders as $odr)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $odr->order_number }}</td>
+                        <td>{{ $odr->user->name }}</td>
+                        <td>{{ $odr->product->name }}</td>
+                        <td>{{ $odr->status }}</td>
+                        <td>{{ $odr->total }}</td>
+                        <td>
+                            <a href="{{ route('orders.show', $odr->id) }}" class="btn-dom"><i data-feather="eye"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between align-items-center pt-5">
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{ $orders->previousPageUrl() }}" class="btn btn-sm btn-outline-secondary">Previous</a>
+                </div>
             </div>
-        </main>
-    </div>
-
-</div>
-</div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="{{ $orders->nextPageUrl() }}" class="btn btn-sm btn-outline-secondary">Next</a>
+                </div>
+            </div>
+        </div>
+    @endsection

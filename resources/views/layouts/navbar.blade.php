@@ -47,21 +47,31 @@
         </div>
     </nav> --}}
 
-    <nav class="navbar">
-        <a href="#" class="navbar-logo">Dominion</a>
-        <div class="navbar-mid">
-            <div class="navbar-search">
-                <input type="text" placeholder="Search">
-                <a href="#">
-                    <i data-feather="search"></i>
-                </a>
+    <nav class="navbar-client">
+        <div class="navbar">
+            <a href="{{ route('landingpage') }}" class="navbar-logo">Dominion</a>
+            <div class="navbar-mid">
+                <form class="navbar-search" action="{{ route('search') }}" method="get">
+                    <input id="search" name="search" type="text" placeholder="Search">
+                    <button type="submit"><i data-feather="search"></i></button>
+                </form>
+            </div>
+            <div class="navbar-right">
+                <a href="{{ route('cart.index') }}" id="menu"><i data-feather="shopping-cart"></i></a>
+                <a href="{{ route('profile.index') }}" id="menu"><i data-feather="user"></i></a>
+                @can('isAdmin')
+                    <a href="{{ route('dashboard') }}" id="menu"><i data-feather="tool"></i></a>
+                @endcan
             </div>
         </div>
-        <div class="navbar-right">
-            <a href="{{ route('cart.index') }}" id="menu"><i data-feather="shopping-cart"></i></a>
-            <a href="{{ route('profile.index') }}" id="menu"><i data-feather="user"></i></a>
-            @can('isAdmin')
-                 <a href="{{ route('dashboard') }}" id="menu"><i data-feather="tool"></i></a>
-            @endcan
+        <div class="navbar-under">
+            <div class="navbar-under-item">
+                @foreach ($category as $cty)
+                    <a href="{{route('category.search', $cty->id)}}" class="under-item">{{ $cty->name }}</a>
+                @endforeach
+            </div>
+
         </div>
+
+
     </nav>

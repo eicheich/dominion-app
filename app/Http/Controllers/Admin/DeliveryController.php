@@ -12,16 +12,10 @@ class DeliveryController extends Controller
     //
     public function index()
     {
-        // get data delivery->order->status = shipped dan status = delivered
-        $deliveries = Delivery::whereHas('order', function($query) {
-            $query->where('status', 'shipped')->orWhere('status', 'delivered');
-        })->get();
-
+        $deliveries = Delivery::all();
         return view('admin.delivery.index', [
             'deliveries' => $deliveries
         ]);
-
-
     }
 
 
@@ -33,11 +27,32 @@ class DeliveryController extends Controller
         ]);
     }
 
-    public function updateStatus(Request $request, $id) {
+    public function updateStatus(Request $request, $id)
+    {
         Order::where('id', $id)->update([
             'status' => $request->status
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Delivery status updated');
+    }
+
+    public function search(Request $request)
+    {
+        // buat 3 kondisi, 1 jika filter = all maka tampilkan semua data, 2 jika search kosong maka data sesuai filter, 3 cari sesuai search
+        if ($request->filter == 'all' && $request->search == '') {
+            $deliveries = Delivery::whereHas('order', function ($query) {
+                $query->where('status', 'shipped')->orWhere('status', 'delivered')->orWhere('status', 'success');
+            })->get();
+        } else if ($request->search == '') {
+            $deliveries = Delivery::whereHas('order', function ($query) use ($request) {
+                $query->where('status', $request->filter);
+            })->get();
+        } else {
+            $deliveries = Delivery::where('delivery_number', 'like', '%' . $request->search . '%')->get();
+        }
+
+        return view('admin.delivery.index', [
+            'deliveries' => $deliveries
+        ]);
     }
 }

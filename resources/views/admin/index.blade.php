@@ -1,35 +1,105 @@
 @extends('layouts.mainAdmin')
-@include('layouts.navadmin')
-<div class="container-fluid">
-    <div class="row">
-        {{-- include navbar --}}
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-        @include('layouts.dashboard')
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard Admin</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+{{-- @include('layouts.dashboard') --}}
+
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+
+
+            {{-- include navbar --}}
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div class="container-fluid">
+
+                <div class="info">
+                    <!-- Column -->
+                    <div class="col-sm-12 col-md-6 col-xl-3">
+                        <div class="card bg-danger m-b-30">
+                            <div class="card-body">
+                                <div class="d-flex row">
+                                    <div class="col-3 align-self-center">
+                                        <div class="round">
+                                            <i class="mdi mdi-google-physical-web"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 ml-auto align-self-center text-center">
+                                        <div class="m-l-10 text-white float-right">
+                                            <h5 class="mt-0 round-inner">18090</h5>
+                                            <p class="mb-0 ">Visits Today</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar" class="align-text-bottom"></span>
-                        This week
-                    </button>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card bg-info m-b-30">
+                            <div class="card-body">
+                                <div class="d-flex row">
+                                    <div class="col-3 align-self-center">
+                                        <div class="round">
+                                            <i class="mdi mdi-account-multiple-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 text-center ml-auto align-self-center">
+                                        <div class="m-l-10 text-white float-right">
+                                            <h5 class="mt-0 round-inner">{{$countUsers}}</h5>
+                                            <p class="mb-0 ">New Users</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card bg-success m-b-30">
+                            <div class="card-body">
+                                <div class="d-flex row">
+                                    <div class="col-3 align-self-center">
+                                        <div class="round ">
+                                            <i class="mdi mdi-basket"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 ml-auto align-self-center text-center">
+                                        <div class="m-l-10 text-white float-right">
+                                            <h5 class="mt-0 round-inner">{{ $countOrders }}</h5>
+                                            <p class="mb-0 ">All Orders</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <div class="card bg-primary m-b-30">
+                            <div class="card-body">
+                                <div class="d-flex row">
+                                    <div class="col-3 align-self-center">
+                                        <div class="round">
+                                            <i class="mdi mdi-calculator"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 ml-auto align-self-center text-center">
+                                        <div class="m-l-10 text-white float-right">
+                                            <h5 class="mt-0 round-inner">{{$countProduct}}</h5>
+                                            <p class="mb-0">Total Product</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
                 </div>
             </div>
-            {{-- tampilkan data grafik dari tabel order --}}
+
+        </div>
+        <div class="countainer">
             
-
-
-
-
-        </main>
-    </div>
-</div>
+        </div>
+    @endsection

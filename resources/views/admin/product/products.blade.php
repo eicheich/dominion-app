@@ -1,63 +1,66 @@
 @extends('layouts.mainAdmin')
-@include('layouts.navadmin')
-<div class="container-fluid">
-    <div class="row">
-        {{-- include navbar --}}
-        @include('layouts.dashboard')
-        {{-- table --}}
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard Admin</h1>
-                <h2>Data Delivery</h2>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-secondary">tambah
-                            product</a>
+
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            @if (session('status'))
+                <div class="alert alert-success mt-5">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div class="row-product">
+                <h3>All Products</h3>
+                 <div class="search-filter">
+                    <div class="col">
+                        <form action="{{ route('search.product') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search by product name"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
+                <a href="{{ route('products.create') }}" class="btn-dom">Add Product</a>
             </div>
-            <div class="row row-cols-1 row-cols-md-6 g-4">
-                @foreach ($products as $product)
-                    <div class="col">
-                        <div class="card">
-                            <img src="{{ asset('storage/images/products/' . $product->image) }}" class="card-img-top"
-                                alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $product->name }}</h5>
-                                <p class="card-text">{{ $product->description }}</p>
-                                {{-- buat stock dan price dalam satu baris --}}
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="card-text">Stock: {{ $product->stock }}</p>
-                                    </div>
-                                    <div class="col">
-                                        <p class="card-text">Price: {{ $product->price }}</p>
-                                    </div>
-                                </div>
-                                <p class="card-text">{{ $product->category->name }}</p>
-                                <div class="d-flex justify-content-between align-items-left">
-                                    <a href="{{ route('products.edit', $product->id) }}"
-                                        class="btn btn-sm btn-outline-secondary h-100">Edit</a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
-                                        class="form-action">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                @endforeach
-            </div>
-            {{-- {{$products->links()}} --}}.
+            <table class="table-product">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td><img src="{{ asset('storage/images/products/' . $product->image) }}" alt=""
+                                    style="width: 100px"></td>
+                            <td class="button-group">
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn-dom"><i
+                                        data-feather="edit"></i></a>
+                                <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn-dom"><i data-feather="trash-2"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             <div class="d-flex justify-content-between align-items-center pt-5">
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                        <a href="{{ $products->previousPageUrl() }}"
-                            class="btn btn-sm btn-outline-secondary">Previous</a>
+                        <a href="{{ $products->previousPageUrl() }}" class="btn btn-sm btn-outline-secondary">Previous</a>
                     </div>
                 </div>
                 <div class="btn-toolbar mb-2 mb-md-0">
@@ -66,23 +69,4 @@
                     </div>
                 </div>
             </div>
-
-        </main>
-
-    </div>
-</div>
-
-
-
-
-{{-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
-</script>
-<script src="dashboard.js"></script>
-</body> --}}
-
+        @endsection

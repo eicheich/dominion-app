@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     public function products()
     {
-        $products = Product::with('category')->paginate(2);
+        $products = Product::with('category')->paginate(5);
         return view('admin.product.products', [
             'products' => $products
         ]);
@@ -114,5 +114,14 @@ class ProductController extends Controller
         $data->delete();
 
         return redirect()->route('products')->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function search(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->search . '%');
+        // return view with paginate
+        return view('admin.product.products', [
+            'products' => $products->paginate(5)
+        ]);
     }
 }
