@@ -3,22 +3,18 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-
-            {{-- include navbar --}}
             @if (session('status'))
-                <div class="alert alert-success">
+                <div class="alert alert-success mt-5">
                     {{ session('status') }}
                 </div>
             @endif
-
-            {{-- information card with big icons --}}
             <div class="row-product">
                 <h3>All Products</h3>
                  <div class="search-filter">
                     <div class="col">
                         <form action="{{ route('search.product') }}" method="GET">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search by cancellations number"
+                                <input type="text" class="form-control" placeholder="Search by product name"
                                     aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
                                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                             </div>
@@ -26,11 +22,8 @@
                         </form>
                     </div>
                 </div>
-
                 <a href="{{ route('products.create') }}" class="btn-dom">Add Product</a>
             </div>
-
-
             <table class="table-product">
                 <thead>
                     <tr>

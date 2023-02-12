@@ -307,3 +307,10 @@ body {
 .flex {
     display: flex;
 }
+
+.text-dom-a5{
+    font-size: 1.1rem;
+    font-weight: 550;
+    color: #000;
+    margin-top: 1rem;
+}
