@@ -14,6 +14,19 @@
             {{-- information card with big icons --}}
             <div class="row-product">
                 <h3>All Products</h3>
+                 <div class="search-filter">
+                    <div class="col">
+                        <form action="{{ route('search.product') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search by cancellations number"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
                 <a href="{{ route('products.create') }}" class="btn-dom">Add Product</a>
             </div>
 
@@ -39,7 +52,8 @@
                             <td><img src="{{ asset('storage/images/products/' . $product->image) }}" alt=""
                                     style="width: 100px"></td>
                             <td class="button-group">
-                                <a href="{{ route('products.edit', $product->id) }}" class="btn-dom"><i data-feather="edit"></i></a>
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn-dom"><i
+                                        data-feather="edit"></i></a>
                                 <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                     @csrf
                                     @method('delete')
@@ -51,15 +65,15 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-between align-items-center pt-5">
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group me-2">
-                    <a href="{{ $products->previousPageUrl() }}" class="btn btn-sm btn-outline-secondary">Previous</a>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a href="{{ $products->previousPageUrl() }}" class="btn btn-sm btn-outline-secondary">Previous</a>
+                    </div>
+                </div>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a href="{{ $products->nextPageUrl() }}" class="btn btn-sm btn-outline-secondary">Next</a>
+                    </div>
                 </div>
             </div>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group me-2">
-                    <a href="{{ $products->nextPageUrl() }}" class="btn btn-sm btn-outline-secondary">Next</a>
-                </div>
-            </div>
-        </div>
- @endsection
+        @endsection

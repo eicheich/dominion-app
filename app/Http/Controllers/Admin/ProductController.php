@@ -115,4 +115,13 @@ class ProductController extends Controller
 
         return redirect()->route('products')->with('success', 'Data berhasil dihapus.');
     }
+
+    public function search(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->search . '%');
+        // return view with paginate
+        return view('admin.product.products', [
+            'products' => $products->paginate(5)
+        ]);
+    }
 }

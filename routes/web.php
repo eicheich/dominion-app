@@ -35,6 +35,7 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
 Route::resource('products', ProductController::class)->middleware(['isAdmin']);
 Route::resource('orders', OrderController::class)->middleware(['isAdmin']);
 Route::get('/orders/search', [OrderController::class, 'search'])->name('search.filter.orders')->middleware(['isAdmin']);
+Route::get('/product/search', [ProductController::class, 'search'])->name('search.product')->middleware(['isAdmin']);
 
 // auth
 Route::prefix('auth')->group(function () {
