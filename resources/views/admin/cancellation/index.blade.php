@@ -133,7 +133,8 @@
                             </td>
                         @else
                             <td>
-                                <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>{{ $cancellation->order->status }}</button>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                    disabled>{{ $cancellation->order->status }}</button>
 
                             </td>
                         @endif
