@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,8 +14,10 @@ class ProfileController extends Controller
     public function index()
     {
         // get user by id and pass to view
+        $category = Category::all();
         $user = auth()->user();
         return view('client.profile.index', [
+            'category' => $category,
             'user' => $user
         ]);
     }
@@ -51,7 +54,7 @@ class ProfileController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
-            'image' => $image       
+            'image' => $image
         ]);
 
 

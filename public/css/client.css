@@ -207,6 +207,31 @@ body {
     color: var(--sec-color);
 }
 
+.btn-dom-login {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.btn-dom-reg a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
 
 
 @media screen and (max-width: 1055px) {
