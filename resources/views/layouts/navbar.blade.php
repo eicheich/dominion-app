@@ -53,24 +53,26 @@
             <div class="navbar-mid">
                 <form class="navbar-search" action="{{ route('search') }}" method="get">
                     <input id="search" name="search" type="text" placeholder="Search">
-                    <button type="submit"><i data-feather="search"></i></button>
+                    <button type="submit" id="search"><i data-feather="search"></i></button>
                 </form>
             </div>
             <div class="navbar-right">
                 {{-- kondisi jika sudah login dan belum --}}
                 @if (Auth::check())
-                    <a href="{{ route('cart.index') }}" id="menu"><i data-feather="shopping-cart"></i></a>
-                    <a href="{{ route('profile.index') }}" id="menu"><i data-feather="user"></i></a>>
+                <a href="{{ route('cart.index') }}" ><i data-feather="shopping-cart"></i></a>
+                <a href="{{ route('profile.index') }}" ><i data-feather="user"></i></a>>
+
                 @else
                 {{-- button lucu signin dan signup --}}
-                    <a href="{{ route('login') }}" id="menu"><i data-feather="log-in"></i></a>
-                    <a href="{{ route('register') }}" id="menu"><i data-feather="user-plus"></i></a>
-                @endif
+                    <a href="{{ route('login') }}"><i data-feather="log-in"></i></a>
+                    <a href="{{ route('register') }}" ><i data-feather="user-plus"></i></a>
+                    @endif
 
-                @can('isAdmin')
-                    <a href="{{ route('dashboard') }}" id="menu"><i data-feather="tool"></i></a>
-                @endcan
-            </div>
+                    @can('isAdmin')
+                    <a href="{{ route('dashboard') }}"><i data-feather="tool"></i></a>
+                    @endcan
+                </div>
+                <a class="menu" href="#" id="menu"><i data-feather="menu"></i></a>
         </div>
         <div class="navbar-under">
             <div class="navbar-under-item">
