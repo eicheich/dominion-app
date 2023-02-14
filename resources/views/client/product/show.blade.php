@@ -1,15 +1,16 @@
 @extends('layouts.main')
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
 <div class="container">
     @section('content')
         <div class="row">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="col-md-6">
                 <img class="img-detail" src="{{ asset('storage/images/products/' . $product->image) }}"
-                    alt="{{ $product->name }}" >
+                    alt="{{ $product->name }}">
             </div>
             <div class="col-md-6 ">
                 <h1 class="text-dom-span">{{ $product->category->name }}</h1>
@@ -20,7 +21,8 @@
                 <p class="text-dom-a4">Color :</p>
                 <div class="color-img">
                     <img class="color-item" src="{{ asset('images/assets/null photo.png') }}" alt="">
-                    <img class="color-item border" src="{{ asset('storage/images/products/' . $product->image) }}" alt="">
+                    <img class="color-item border" src="{{ asset('storage/images/products/' . $product->image) }}"
+                        alt="">
                     <img class="color-item" src="{{ asset('images/assets/null photo.png') }}" alt="">
                     <img class="color-item" src="{{ asset('images/assets/null photo.png') }}" alt="">
                 </div>
@@ -63,24 +65,24 @@
         </div>
         <div class="col mt-5">
             <div class="desc">
-                    <p class="text-dom-a3">Description</p>
-                    <p class="text-dom-a5">{{ $product->description }}</p>
-                </div>
+                <p class="text-dom-a3">Description</p>
+                <p class="text-dom-a5">{{ $product->description }}</p>
+            </div>
             <div class="desc">
-                    <p class="text-dom-a3">Technical feature</p>
-                    <p class="text-dom-a5 ">
-                        - Japanese PU <br>
-                        - 3 layers of natural foam <br>
-                        - Attached thumb: better protection against injuries <br>
-                        - Anatomical shape / Grip <br>
-                        - Optimized metacarpal protection <br>
-                        - Reinforced seams: durability <br>
-                        - Wide Velcro closure: precise hold and fit <br>
-                        - Long cuff: protection and stability of the wrist <br>
-                        - Embossed Venum 3D logo <br>
-                        - Fully assembled and hand-stitched in Thailand <br>
-                    </p>
-                </div>
+                <p class="text-dom-a3">Technical feature</p>
+                <p class="text-dom-a5 ">
+                    - Japanese PU <br>
+                    - 3 layers of natural foam <br>
+                    - Attached thumb: better protection against injuries <br>
+                    - Anatomical shape / Grip <br>
+                    - Optimized metacarpal protection <br>
+                    - Reinforced seams: durability <br>
+                    - Wide Velcro closure: precise hold and fit <br>
+                    - Long cuff: protection and stability of the wrist <br>
+                    - Embossed Venum 3D logo <br>
+                    - Fully assembled and hand-stitched in Thailand <br>
+                </p>
+            </div>
 
         </div>
     @endsection

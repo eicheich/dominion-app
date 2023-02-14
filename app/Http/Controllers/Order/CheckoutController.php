@@ -9,17 +9,20 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Cancellation;
 use App\Helper\OrderHelper;
+use App\Models\Category;
 use App\Models\Transaction;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('transaction.checkout');
+        $category = Category::all();
+        return view('transaction.checkout', compact('category'));
     }
 
     public function checkout(Request $request)
     {
+        $category = Category::all();
         $request->validate([
             'quantity' => 'required|integer',
             'size' => 'required|string',

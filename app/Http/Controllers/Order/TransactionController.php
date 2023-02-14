@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Faker\Provider\ar_EG\Payment;
 use App\Models\Order;
 use App\Models\Transaction;
+use App\Models\Category;
 
 
 class TransactionController extends Controller
@@ -46,8 +47,9 @@ class TransactionController extends Controller
     }
     public function history()
     {
+        $category = Category::all();
         $orders = Order::where('user_id', auth()->user()->id)->get();
-        return view('client.transaction.history', compact('orders'));
+        return view('client.transaction.history', compact('orders', 'category'));
     }
 
     public function detail($id)

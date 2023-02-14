@@ -222,7 +222,6 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--sec-color);
-    margin-bottom: 1rem;
 }
 
 .text-dom-span {
@@ -235,13 +234,16 @@ body {
     font-size: 1.3rem;
     font-weight: 500;
     color: var(--sec-color);
-    margin-bottom: 1rem;
 }
 
 .text-dom-a5 {
     font-size: 1.1rem;
     color: var(--sec-color);
-    margin-bottom: 1rem;
+}
+
+.text-dom-a6 {
+    font-size: 1rem;
+    color: var(--sec-color);
 }
 
 .none {
@@ -336,7 +338,7 @@ body {
     height: 100%;
 }
 
-.add-cart{
+.add-cart {
     width: 100%;
     height: 2.7rem;
     background-color: var(--primary-color);
@@ -344,7 +346,7 @@ body {
     border-radius: 0.4rem;
 }
 
-.btn-add-cart{
+.btn-add-cart {
     width: 100%;
     height: 100%;
     background-color: var(--primary-color);
@@ -356,6 +358,90 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
+.img-cart {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 0.4em;
+}
+
+.img-carts {
+    width: 100%;
+    height: 100%;
+}
+
+.card-body-cart {
+    display: flex;
+    justify-content: left;
+    gap: 1rem;
+    padding: 1rem;
+
+}
+
+.title-cart {
+    padding: 2rem 0;
+}
+
+.form-id {
+    border: 2px solid var(--bg);
+    padding: 0 1rem;
+}
+
+.btn-id {
+    z-index: 999;
+    width: 2rem;
+    height: 2.3rem;
+    background-color: #fff;
+    color: var(--primary-color);
+    border-radius: 0.4rem;
+    border: 2px solid var(--bg);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-id:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.card-cart {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.qty-cart {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+.action-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-ck{
+    width: 100%;
+    height: 2.7rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
 
 /* responsive card mobile  */
 @media screen and (max-width: 768px) {

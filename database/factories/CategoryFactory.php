@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             // kategori : Basketball, Football, Volleyball, Badminton, Tennis dan tidak boleh sama
-            'name' => $this->faker->unique()->randomElement(['Basketball', 'Football', 'Volleyball', 'Badminton', 'Tennis']),
+            'name' => $this->faker->unique()->randomElement(['Basketball', 'Football', 'Volleyball', 'Badminton', 'Tennis', 'Bulutangkis', "Boxing"]),
 
         ];
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 use function Termwind\render;
@@ -14,8 +16,9 @@ class CartController extends Controller
 
     public function index()
     {
-        $category = Product::all();
-        $carts = Cart::where('user_id', auth()->user()->id)->get();
+        $category = Category::all();
+        $carts = Cart::where('user_id', Auth::user()->id)->get();
+        $carts = $carts->sortByDesc('created_at');
         return view('client.product.cart', compact('carts', 'category'));
     }
 
