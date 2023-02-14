@@ -1,7 +1,6 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 
 @section('content')
-    {{-- session message --}}
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -59,4 +58,63 @@
         </table>
     @endif
 
-@endsection
+@endsection --}}
+
+@extends('layouts.main')
+
+<div class="container">
+    @section('content')
+        @if (count($orders) == 0)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cart</h3>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="text-center">Your cart is empty</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{{ route('landingpage') }}" class="btn btn-primary">Buy Products</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+@else
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-header">
+                <h3 class="text-dom-a3 pb-4">History</h3>
+            </div>
+            @foreach ($orders as $odr)
+                <a class="tnone" href="{{ route('detail', $odr->id) }}">
+                    <div class="card-cart">
+                        <div class="card-body-cart">
+                            <div class="img-cart">
+                                <img class="img-carts" src="{{ asset('storage/images/products/' . $odr->product->image) }}">
+                            </div>
+                            <div class="title-cart">
+                                <h3 class="text-dom-a4">{{ $odr->product->name }}</h3>
+                                <h3 class="text-dom-a6">Size : {{ $odr->size }}</h3>
+                                <h3 class="text-dom-a6">Color : Blue</h3>
+                                <h3 class="text-dom-a6">Qty : {{ $odr->quantity }}</h3>
+                            </div>
+                        </div>
+                        <div class="qty-cart">
+                            <h3 class="text-dom-a6">{{ $odr->order_number }}</h3>
+                        </div>
+                        <div class="qty-cart">
+                            <h3 class="text-dom-a6">$ {{ number_format($odr->total, 2) }}</h3>
+                        </div>
+                        <div class="qty-cart m-4">
+                            <span class="{{ getOrderStatusClass($odr->status) }}"> {{ $odr->status }}</span>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+            @endif
+        </div>
+    @endsection

@@ -124,11 +124,11 @@
                         </div>
                         <div class="title-cart">
                             <h3 class="text-dom-a4">{{ $cart->product->name }}</h3>
+                            <h3 class="text-dom-a6">$ {{ number_format($cart->product->price, 2) }}</h3>
+
                             <h3 class="text-dom-a6">Size : {{ $cart->size }}</h3>
                             <h3 class="text-dom-a6">Color : Blue</h3>
                         </div>
-                        {{-- button + and - --}}
-
                     </div>
                     <div class="qty-cart">
                         <form action="{{ route('cart.update', $cart->id) }}" method="POST">
@@ -137,8 +137,8 @@
                             <div class="input-group">
                                 <button type="submit" class="btn-id" name="quantity"
                                     value="{{ $cart->quantity - 1 }}">-</button>
-                                <input type="number" class="form-id" readonly value="{{ $cart->quantity}}"
-                                    min="1" max="{{$cart->product->stock}}">
+                                <input type="number" class="form-id" readonly value="{{ $cart->quantity }}" min="1"
+                                    max="{{ $cart->product->stock }}">
                                 <button type="submit" class="btn-id" name="quantity"
                                     value="{{ $cart->quantity + 1 }}">+</button>
                             </div>
@@ -148,7 +148,7 @@
                         <form action="{{ route('cart.destroy', $cart->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" ><i data-feather="trash"></i></button>
+                            <button type="submit"><i data-feather="trash"></i></button>
                         </form>
                         <form action="{{ route('checkout') }}" method="POST">
                             @csrf
