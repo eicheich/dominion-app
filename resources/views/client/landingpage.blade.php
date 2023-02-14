@@ -23,8 +23,8 @@
                         <div class="card-body">
                             <div class="card-head">
                                 <span class="badge">Hot</span>
-                                <h5 class="card-title">{{ $product->name }}</h5>
-                                <p class="card-subtitle">{{ $product->category->name }}</p>
+                                <h5 class="text-dom-a4">{{ $product->name }}</h5>
+                                <p class="text-dom-a5">{{ $product->category->name }}</p>
                             </div>
                             <p class="card-price">$. {{ number_format($product->price) }}</p>
                         </div>

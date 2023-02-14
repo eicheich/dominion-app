@@ -35,12 +35,12 @@ body {
 
 .navbar-under {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1rem 4%;
     background-color: rgba(255, 255, 255, 0.8);
     position: fixed;
-    top: 90;
+    top: 93;
     left: 0;
     right: 0;
     z-index: 9999;
@@ -48,7 +48,7 @@ body {
 
 .navbar-under .navbar-under-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: var(--primary-color);
 }
@@ -239,10 +239,13 @@ body {
 }
 
 .text-dom-a5 {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.1rem;
     color: var(--sec-color);
     margin-bottom: 1rem;
+}
+
+.none {
+    display: none;
 }
 
 .row {
@@ -251,11 +254,106 @@ body {
 }
 
 .img-detail {
-    /* padding-right: 1rem; */
-    width: 100%;
-    height: 100%;
+    width: 90%;
     object-fit: cover;
     border-radius: 0.6rem;
+}
+
+.button-group {
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.heart {
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.color-img {
+    display: flex;
+    width: 6rem;
+    height: 6rem;
+    gap: 2rem;
+    margin-right: 0.5rem;
+}
+
+.color-img .color-item {
+    transition: all 0.2s ease-in-out;
+}
+
+.color-img .color-item:hover {
+    scale: 1.1;
+}
+
+.size-box {
+    display: flex;
+    width: 3.2rem;
+    height: 3.2rem;
+    gap: 2rem;
+    margin-right: 0.5rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.gap {
+    gap: 1rem;
+}
+
+.size-box .size-item {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.size-box .size-item:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.border {
+    border: 2px solid var(--primary-color);
+}
+
+.color-img .color-item {
+    width: 100%;
+    height: 100%;
+}
+
+.add-cart{
+    width: 100%;
+    height: 2.7rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 0.4rem;
+}
+
+.btn-add-cart{
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 
@@ -306,14 +404,18 @@ body {
         height: 1.5rem;
     }
 
+    .text-dom-span {
+        margin-top: 2rem;
+    }
+
     .navbar-under {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding: 0.2rem 1%;
         background-color: rgba(255, 255, 255, 0.8);
         position: fixed;
-        top: 50;
+        top: 53;
         left: 0;
         right: 0;
         z-index: 9999;
@@ -321,7 +423,7 @@ body {
 
     .navbar-under .navbar-under-item {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         color: var(--primary-color);
     }
@@ -329,6 +431,7 @@ body {
     .navbar-under .navbar-under-item a {
         text-align: center;
         font-weight: 600;
+        font-size: 0.8rem;
         color: var(--primary-color);
         margin: 0 0.8rem;
         text-decoration: none;
@@ -337,7 +440,22 @@ body {
     .col .card .card-body .card-head .card-title {
         font-size: 0.3rem;
         font-weight: 600;
-        margin-bottom: 0.5rem;
     }
+
+    .img-detail {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.6rem;
+    }
+
+    .button-group {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+
+
 
 }
