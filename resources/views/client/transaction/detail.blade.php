@@ -63,21 +63,16 @@
                             </tr>
                         </tbody>
                     </table>
-                    {!! getCancellationLink($order) !!}
-                    <div class="btn-cp">
-                        <a href="' . route('orders.cancel', $order->id) . '" class="btn btn-light">Cancel</a>
-                        <form action="' . route('payment', $order->order_number) . '" method="GET">
-                            <button type="submit" class="btn btn-success">Pay</button>
-                        </form>
-                    </div>
-                    @if ($order->status == 'delivered')
-                        <form action="{{ route('confirm.orders', $order->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-primary ">Confirm</button>
-                        </form>
-                    @endif
                 </div>
+                {!! getCancellationLink($order) !!}
+
+                @if ($order->status == 'delivered')
+                    <form action="{{ route('confirm.orders', $order->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-primary ">Confirm</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

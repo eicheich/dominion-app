@@ -54,6 +54,7 @@ class TransactionController extends Controller
 
     public function detail($id)
     {
+
         $category = Category::all();
         $order = Order::find($id);
         return view('client.transaction.detail', compact('order', 'category'));

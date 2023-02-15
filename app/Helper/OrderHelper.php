@@ -33,10 +33,12 @@ function getCancellationLink($order)
     else {
         if ($order->status == 'pending') {
             return
-            '<a href="' . route('orders.cancel', $order->id) . '" class="btn-cancel tnone">Cancel</a>
-            <form action="' . route('payment', $order->order_number) . '" method="GET">
-                <button type="submit" class="btn btn-success">Pay</button>
-            </form>';
+            '<div class="group-cp">
+                    <form class="btn-p" action="' . route('payment', $order->order_number) . '" method="GET">
+                        <button type="submit" >Pay</button>
+                    </form>
+                    <a href="' . route('orders.cancel', $order->id) . '" class="btn btn-light">Cancel</a>
+                </div>';
         }
     }
     return '';
