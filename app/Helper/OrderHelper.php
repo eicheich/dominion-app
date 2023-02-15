@@ -28,12 +28,12 @@ function getCancellationLink($order)
         <div class="alert alert-danger">
              <p>Cancellation request has been sent</p>
         </div>';
-    
-    // jika status cancellationnya approved maka mucncul alert
+
     }
     else {
         if ($order->status == 'pending') {
-            return '<a href="' . route('orders.cancel', $order->id) . '" class="btn btn-danger">Cancel</a>
+            return
+            '<a href="' . route('orders.cancel', $order->id) . '" class="btn-cancel tnone">Cancel</a>
             <form action="' . route('payment', $order->order_number) . '" method="GET">
                 <button type="submit" class="btn btn-success">Pay</button>
             </form>';

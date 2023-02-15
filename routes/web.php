@@ -57,7 +57,7 @@ Route::get('/category/{id}', [ClientController::class, 'category'])->name('categ
 Route::resource('cart', CartController::class)->middleware(['auth']);
 Route::prefix('order')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
-    Route::get('/payment/{order_number}', [TransactionController::class, 'payment']);
+    Route::get('/payment/{order_number}', [TransactionController::class, 'payment'])->name('payment');
     Route::post('/pay', [TransactionController::class, 'pay'])->name('pay');
     Route::get('/', [TransactionController::class, 'history'])->name('history');
     Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail');

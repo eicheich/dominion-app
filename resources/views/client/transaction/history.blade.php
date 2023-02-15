@@ -90,7 +90,7 @@
                 <h3 class="text-dom-a3 pb-4">History</h3>
             </div>
             @foreach ($orders as $odr)
-                <a class="tnone" href="{{ route('detail', $odr->id) }}">
+                <a class="tnone" href="{{ route('detail', $odr  ->id) }}">
                     <div class="card-cart">
                         <div class="card-body-cart">
                             <div class="img-cart">

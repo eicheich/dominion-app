@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Cancellation;
 use App\Helper\OrderHelper;
 use App\Models\Category;
+use App\Models\Delivery;
 use App\Models\Transaction;
 
 class CheckoutController extends Controller
@@ -60,6 +61,7 @@ class CheckoutController extends Controller
     public function detail($id)
     {
         $order = Order::find($id);
-        return view('client.transaction.detail', compact('order'));
+        $delivery = Delivery::where('order_id', $id)->first();
+        return view('client.transaction.detail', compact('order', 'delivery'));
     }
 }
