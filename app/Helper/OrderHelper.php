@@ -8,7 +8,7 @@ function getOrderStatusClass($status)
         case 'Success':
             return 'text-success fw-bold';
         case 'Paid':
-            return 'text-info fw-bold';
+            return 'text-success fw-bold';
         default:
             return 'text-danger fw-bold';
     }
@@ -28,11 +28,9 @@ function getCancellationLink($order)
              <p>Cancellation request has been sent</p>
         </div>';
     } else {
-        if ($order->status == 'Pending') {
+        if ($order->status == 'Paid') {
             return
                 '<div class="group-cp">
-                    <button class="btn-p">Pay</button>
-
                     <a href="' . route('orders.cancel', $order->id) . '" class="btn btn-light">Cancel</a>
                 </div>';
         }

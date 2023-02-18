@@ -585,10 +585,18 @@ body {
 .card-detail-header {
     align-items: center;
     display: block;
-    padding: 2rem;
-    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.2);
     border-radius: 0.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.detail-header {
+    align-items: center;
+    display: block;
+    height: 3rem;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    border-radius: 0.4rem;
+    background-color: var(--primary-color);
 }
 
 .card-detail {
