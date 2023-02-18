@@ -86,34 +86,39 @@
 @else
     <div class="row">
         <div class="col-md-12">
-            <div class="card-header">
+            <div class="card-pay">
                 <h3 class="text-dom-a3 pb-4">History</h3>
             </div>
             @foreach ($orders as $odr)
                 <a class="tnone" href="{{ route('detail', $odr  ->id) }}">
-                    <div class="card-cart">
+                    <div class="card-pay">
                         <div class="card-body-cart">
                             <div class="img-cart">
                                 <img class="img-carts" src="{{ asset('storage/images/products/' . $odr->product->image) }}">
                             </div>
-                            <div class="title-cart">
+                            <div class="title-pay">
                                 <h3 class="text-dom-a4">{{ $odr->product->name }}</h3>
                                 <h3 class="text-dom-a6">Size : {{ $odr->size }}</h3>
                                 <h3 class="text-dom-a6">Color : Blue</h3>
                                 <h3 class="text-dom-a6">Qty : {{ $odr->quantity }}</h3>
                             </div>
                         </div>
-                        <div class="qty-cart">
+                        <div class="title-pay">
                             <h3 class="text-dom-a6">{{ $odr->order_number }}</h3>
                         </div>
-                        <div class="qty-cart">
+                        <div class="title-pay">
+                            <h3 class="text-dom-a6">{{ $odr->created_at }}</h3>
+                        </div>
+                        <div class="title-pay">
                             <h3 class="text-dom-a6">$ {{ number_format($odr->total, 2) }}</h3>
                         </div>
-                        <div class="qty-cart m-4">
+                        <div class="title-pay">
                             <span class="{{ getOrderStatusClass($odr->status) }}"> {{ $odr->status }}</span>
                         </div>
                     </div>
                 </a>
+                <hr class="text-dom-a3 ">
+                <br>
             @endforeach
             @endif
         </div>

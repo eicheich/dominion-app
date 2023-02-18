@@ -28,7 +28,7 @@ function getCancellationLink($order)
              <p>Cancellation request has been sent</p>
         </div>';
     } else {
-        if ($order->status == 'Paid') {
+        if ($order->status == 'Paid' || $order->status == 'Pending') {
             return
                 '<div class="group-cp">
                     <a href="' . route('orders.cancel', $order->id) . '" class="btn btn-light">Cancel</a>
