@@ -60,16 +60,16 @@
                     <table class="table table-borderless">
                         <tbody>
                             <tr>
-                                <th scope="row">Fee Shipping</th>
-                                <td>Free</td>
+                                <th class="d-text">Fee Shipping</th>
+                                <td class="d-text-2">Free</td>
                             </tr>
                             <tr>
-                                <th scope="row">Taxes</th>
-                                <td>-</td>
+                                <th class="d-text">Taxes</th>
+                                <td class="d-text-2">-</td>
                             </tr>
                             <tr>
-                                <th scope="row">Subtotal</th>
-                                <td>IDR. {{ number_format($order->total) }}</td>
+                                <th class="d-text">Subtotal</th>
+                                <td class="d-text-2">IDR. {{ number_format($order->total) }}</td>
                             </tr>
                         </tbody>
                     </table>

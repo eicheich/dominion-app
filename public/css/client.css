@@ -765,7 +765,18 @@ body {
         padding: 0.5rem;
     }
 
+    .d-text{
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+    .d-text-2{
+        font-weight: 500;
+        font-size: 1.1rem;
+    }
 
+    .text-max{
+        max-width: 70%;
+    }
 
 
 }
