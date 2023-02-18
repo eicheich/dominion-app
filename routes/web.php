@@ -55,13 +55,14 @@ Route::get('/search', [ClientController::class, 'search'])->name('search');
 Route::get('/category/{id}', [ClientController::class, 'category'])->name('category.search');
 
 Route::resource('cart', CartController::class)->middleware(['auth']);
-Route::prefix('order')->group(function () {
+Route::prefix('order')->middleware('auth')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
     Route::get('/payment/{order_number}', [TransactionController::class, 'payment'])->name('payment');
     Route::post('/pay', [TransactionController::class, 'pay'])->name('pay');
     Route::get('/', [TransactionController::class, 'history'])->name('history');
     Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail');
     Route::put('/confirm/{id}', [TransactionController::class, 'confirm'])->name('confirm.orders');
+
 });
 Route::get('/orders/{id}/cancel', [CancellController::class, 'cancel'])->name('orders.cancel')->middleware(['auth']);
 Route::post('/orders/{id}/cancel', [CancellController::class, 'cancelOrder'])->name('orders.cancellation')->middleware(['auth']);

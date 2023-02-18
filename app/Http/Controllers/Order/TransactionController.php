@@ -14,9 +14,9 @@ class TransactionController extends Controller
 {
     public function payment()
     {
-        // cari order berdasarkan order number
+        $category = Category::all();
         $order = Order::where('order_number', request()->order_number)->first();
-        return view('client.transaction.payment', compact('order'));
+        return view('client.transaction.payment', compact('order', 'category'));
     }
 
     // pay
@@ -28,20 +28,13 @@ class TransactionController extends Controller
             'phone' => 'required|string',
         ]);
 
-        Transaction::create([
-            'order_id' => $request->order_id,
-            'transaction_number' => 'TRX' . time(),
-            'total' => $request->total,
-            'status' => 'success',
-            'payment_by' => $request->payment_by,
 
-        ]);
 
         Order::where('id', $request->order_id)->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->phone,
-            'status' => 'payment confirmed',
+            'status' => 'Paid',
         ]);
         return redirect()->route('history');
     }

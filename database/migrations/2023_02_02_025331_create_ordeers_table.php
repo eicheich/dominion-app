@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone', 13)->nullable();
-            $table->enum('status', ['pending', 'payment confirmed', 'shipped', 'delivered', 'success', 'canceled']);
+            $table->enum('status', ['Pending', 'Paid', 'Shipped', 'Delivered', 'Success', 'canceled']);
         });
     }
 

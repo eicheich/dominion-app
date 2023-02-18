@@ -18,8 +18,6 @@ class DashboardController extends Controller
         $users = DB::table('users')->get();
         $deliveries = DB::table('deliveries')->get();
         $cancellations = DB::table('cancellations')->get();
-
-        // count orders
         $countOrders = DB::table('orders')->count();
         $countUsers = DB::table('users')->count();
         $countProduct = DB::table('products')->count();

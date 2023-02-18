@@ -125,7 +125,6 @@
                         <div class="title-cart">
                             <h3 class="text-dom-a4">{{ $cart->product->name }}</h3>
                             <h3 class="text-dom-a6">$ {{ number_format($cart->product->price, 2) }}</h3>
-
                             <h3 class="text-dom-a6">Size : {{ $cart->size }}</h3>
                             <h3 class="text-dom-a6">Color : Blue</h3>
                         </div>
@@ -168,4 +167,5 @@
             @endforeach
             @endif
         </div>
+        
     @endsection

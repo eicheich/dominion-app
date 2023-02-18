@@ -45,7 +45,8 @@
                         </div>
 
                         <div class="qty-cart">
-                            <h3 class="text-dom-a4 m-3">$ {{ number_format($order->total, 2) }}</h3>
+                            {{-- number format idr --}}
+                            <h3 class="text-dom-a4">IDR. {{ number_format($order->product->price, 3) }}</h3>
                         </div>
 
                     </div>
@@ -65,6 +66,7 @@
                     </table>
                 </div>
                 {!! getCancellationLink($order) !!}
+
 
                 @if ($order->status == 'delivered')
                     <form action="{{ route('confirm.orders', $order->id) }}" method="POST">

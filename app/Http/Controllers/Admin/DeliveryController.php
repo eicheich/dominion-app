@@ -38,7 +38,6 @@ class DeliveryController extends Controller
 
     public function search(Request $request)
     {
-        // buat 3 kondisi, 1 jika filter = all maka tampilkan semua data, 2 jika search kosong maka data sesuai filter, 3 cari sesuai search
         if ($request->filter == 'all' && $request->search == '') {
             $deliveries = Delivery::whereHas('order', function ($query) {
                 $query->where('status', 'shipped')->orWhere('status', 'delivered')->orWhere('status', 'success');

@@ -15,7 +15,7 @@
             <div class="col-md-6 ">
                 <h1 class="text-dom-span">{{ $product->category->name }}</h1>
                 <h1 class="text-dom-a3">{{ $product->name }}</h1>
-                <p class="text-dom-a4">$. {{ number_format($product->price) }}</p>
+                <p class="text-dom-a4">IDR. {{ number_format($product->price) }}</p>
                 {{-- make a line with grey color --}}
                 <hr class="text-dom-a3">
                 <p class="text-dom-a4">Color :</p>

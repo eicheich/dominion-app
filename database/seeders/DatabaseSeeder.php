@@ -25,13 +25,16 @@ class DatabaseSeeder extends Seeder
         // seed category
         //    create custom user
         \App\Models\User::factory()->create([
-            'name' => 'admin delivery',
-            'username' => 'adm_delivery',
-            'email' => 'admdelivery@dominion.com',
+            'name' => 'admin',
+            'username' => 'adm',
+            'email' => 'adm@dominion.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'gender' => 'F',
+            'phone' => '081234567890',
+            'address' => 'Jl. 34 Fairmount Street, Smithfield,ri, 2913  United States, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
             'is_admin' => 1,
         ]);
 
-        \App\Models\Category::factory(5)->create();
+        \App\Models\Category::factory(7)->create();
     }
 }
