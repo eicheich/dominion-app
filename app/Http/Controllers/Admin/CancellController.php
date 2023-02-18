@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cancellation;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Delivery;
 use App\Models\Order;
@@ -14,14 +15,16 @@ class CancellController extends Controller
     public function index()
     {
         $cancellations = Cancellation::all();
-        return view('admin.cancellation.index', compact('cancellations'));
+        $category = Category::all();
+        return view('admin.cancellation.index', compact('cancellations', 'category'));
     }
 
     public function cancel($id)
     {
         // to page cancel
         $order = Order::find($id);
-        return view('client.transaction.cancel', compact('order'));
+        $category = Category::all();
+        return view('client.transaction.cancel', compact('order', 'category'));
     }
 
     public function cancelOrder($id, Request $request)
@@ -30,6 +33,7 @@ class CancellController extends Controller
             'cancellation_number' => 'C' . time(),
             'order_id' => $id,
             'reason' => $request->reason,
+            'status' => 'Pending'
         ]);
 
         return redirect()->route('history')->with('success', 'Order cancellation request sent');
@@ -37,12 +41,11 @@ class CancellController extends Controller
 
     public function approve($id, Request $request)
     {
-        Cancellation::where('id', $id)->update([
-            'status' => 'approved'
-        ]);
-
         Order::where('id', $request->order_id)->update([
-            'status' => 'canceled'
+            'status' => 'Canceled'
+        ]);
+        Cancellation::where('id', $id)->update([
+            'status' => 'Approved'
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Order cancellation request approved');

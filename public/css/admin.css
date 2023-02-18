@@ -230,6 +230,19 @@ body {
     color: var(--primary-color);
 }
 
+.max-width {
+    max-width: 10%;
+}
+
+.btn-p {
+    margin-top: 0.2rem;
+    width: 80%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .row-product a {
     text-decoration: none;
 }
@@ -300,7 +313,7 @@ body {
     text-align: center;
 }
 
-.text-dec{
+.text-dec {
     text-decoration: none;
 }
 
@@ -308,7 +321,7 @@ body {
     display: flex;
 }
 
-.text-dom-a5{
+.text-dom-a5 {
     font-size: 1.1rem;
     font-weight: 550;
     color: #000;

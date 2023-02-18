@@ -103,7 +103,6 @@
                     <th>Product name</th>
                     <th>Total price</th>
                     <th>Reason</th>
-                    <th>User</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -115,20 +114,20 @@
                         <td>{{ $cancellation->cancellation_number }}</td>
                         <td>{{ $cancellation->order->product->name }}</td>
                         <td>{{ $cancellation->order->total }}</td>
-                        <td>{{ $cancellation->reason }}</td>
-                        <td>{{ $cancellation->order->name }}</td>
+                        <td class="max-width">{{ $cancellation->reason }}</td>
                         <td>{{ $cancellation->status }}</td>
-                        @if ($cancellation->status == 'pending')
+                        @if ($cancellation->status == 'Pending')
                             <td>
                                 <form action="{{ route('admin.cancellations.approve', $cancellation->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                    <input type="hidden" name="order_id" value="{{$cancellation->order->id }}">
+                                    <button type="submit" class="btn-p">Confirm</button>
                                 </form>
                                 <form action="{{ route('admin.cancellations.reject', $cancellation->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button type="submit" class="btn btn-success">Reject</button>
+                                    <button type="submit" class="btn-p">Reject</button>
                                 </form>
                             </td>
                         @else

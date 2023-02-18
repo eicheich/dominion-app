@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="qty-pay">
-                            <h3 class="text-dom-a5">IDR. {{ number_format($order->product->price, 3) }}</h3>
+                            <h3 class="text-dom-a5">IDR. {{ number_format($order->product->price) }}</h3>
                         </div>
                     </div>
                 </a>

@@ -393,11 +393,25 @@ body {
     align-items: center;
 }
 
+.center{
+    align-items: center;
+    justify-content: center;
+    background-color: #2130;
+}
+
 .btn-p button {
     transition: all 0.2s ease-in-out;
     border-radius: 0.4rem;
     width: 100%;
     height: 100%;
+    background-color: var(--primary-color);
+    color: var(--bg);
+}
+.center .btn-c {
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.2rem;
+    width: 30%;
+    height: 5%;
     background-color: var(--primary-color);
     color: var(--bg);
 }
@@ -777,6 +791,26 @@ body {
     .text-max{
         max-width: 70%;
     }
+
+    .text-dom-a3{
+        font-size: 1.2rem;
+    }
+    .text-dom-a4 {
+        font-size: 1.1rem;
+    }
+
+    .text-dom-a5{
+        font-size: 1rem;
+    }
+
+    .text-dom-a6{
+        font-size: 0.9rem;
+    }
+
+    .title-pay {
+        padding: 0.5rem;
+    }
+
 
 
 }
