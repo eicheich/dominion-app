@@ -629,9 +629,43 @@ body {
     font-size: 2em;
 }
 
+.card-p .flex i {
+    color: #ccc;
+    display: inline-block;
+    font-size: 2.5rem;
+}
+
 .fa-star {
     color: #ccc;
     cursor: pointer;
+}
+
+.c-gray {
+    color: #ccc;
+}
+
+.flex-rate {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.flex-rate .row-1 i {
+    display: inline-block;
+    color: #ffdd00;
+    font-size: 3rem;
+}
+
+.row-1 .rateInt span {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+.rateInt {
+    display: inline-block;
+    font-size: 4em;
+    color: #000;
 }
 
 .checked {
@@ -678,6 +712,11 @@ body {
     border: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+}
+
+.flex-r {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* responsive card mobile  */

@@ -83,6 +83,59 @@
                     - Fully assembled and hand-stitched in Thailand <br>
                 </p>
             </div>
+            <br>
+            <br>
+            {{-- jika ada rate muncul --}}
+            @if (count($rate) == 0)
+            @else
+                <div class="flex-rate">
+                    <div class="row-1">
+                        <p class="text-dom-a3">Product Reviews</p>
+                        <i class="fas fa-star"></i>
+                        <p class="rateInt">{{ $rateStar }}<span>/ 5</span></p>
+                    </div>
+
+                    <div class="row-2">
+                        <p class="text-dom-a3">Featured Reviews</p>
+                        <p class="text-dom-a4 c-gray">Featured Reviews 5 Of 45 Reviews</p>
+                        @foreach ($rate as $rt)
+                            <div class="card-p">
+                                <div class="flex gap">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="text-dom-a4">{{ $rt->user->name }}</p>
+                                </div>
+
+                                <div class="flex-rx">
+
+                                    {{-- tampilkan 5 star dan jadikan kuning sesuai rate yg di input user --}}
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if ($i < $rt->rate)
+                                            <i class="fas fa-star" style="color: #FFC107"></i>
+                                        @else
+                                            <i class="fas fa-star"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+                                <p class="text-dom-a4">{{ $rt->comment }}</p>
+                                <hr class="text-dom-a3">
+                                <br>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="row-3">
+                            <p></p>
+                            {{-- voucher --}}
+                        </div>
+                </div>
+            @endif
 
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     @endsection
