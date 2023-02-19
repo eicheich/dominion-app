@@ -25,7 +25,7 @@ class CheckoutController extends Controller
     {
         $category = Category::all();
         $order = Order::create([
-            'id' => 18,
+            'id' => 21,
             'name' => auth()->user()->name,
             'address' => auth()->user()->address,
             'phone' => auth()->user()->phone,

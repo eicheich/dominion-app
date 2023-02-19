@@ -26,7 +26,7 @@
                                 <h5 class="text-dom-a4">{{ $product->name }}</h5>
                                 <p class="text-dom-a5">{{ $product->category->name }}</p>
                             </div>
-                            <p class="card-price">$. {{ number_format($product->price) }}</p>
+                            <p class="card-price">IDR. {{ number_format($product->price) }}</p>
                         </div>
                     </a>
                 </div>

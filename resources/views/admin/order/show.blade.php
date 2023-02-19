@@ -106,11 +106,12 @@
                             </tr>
                         </table>
                         <div class="btn-group">
-                            @if ($order->status == 'payment confirmed')
+                            @if ($order->status == 'Paid')
                                 <form action="{{ route('orders.update.delivery', $order->id) }}" method="POST">
                                     @csrf
                                     @method('POST')
-                                    <input type="hidden" name="status" value="shipped">
+                                    <input type="hidden" name="status" value="Shipped">
+                                    <input type="hidden" name="id" value="{{$order->id}}">
                                     <button type="submit" class="btn-dom align-right">Delivery</button>
                                 </form>
                             @endif

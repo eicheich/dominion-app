@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="qty-pay">
-                            <h3 class="text-dom-a5">IDR. {{ number_format($order->product->price, 3) }}</h3>
+                            <h3 class="text-dom-a5">IDR. {{ number_format($order->product->price) }}</h3>
                         </div>
                     </div>
                 </a>
@@ -89,7 +89,7 @@
                     <p class="text-dom-a3 w-c">Summary</p>
                     <div class="subt">
                         <p class="text-dom-a5 w-c">Subtotal <i data-feather="help-circle"></i></p>
-                        <p class="text-dom-a5 w-c">IDR. {{ number_format($order->product->price, 3) }}</p>
+                        <p class="text-dom-a5 w-c">IDR. {{ number_format($order->product->price) }}</p>
                     </div>
                     <div class="subt">
                         <p class="text-dom-a5 w-c">Estimated Delivery & Handling</p>
@@ -102,7 +102,7 @@
                     <br>
                     <div class="subt">
                         <p class="text-dom-a5 w-c fw-600">TOTAL</p>
-                        <p class="text-dom-a5 w-c fw-600">IDR. {{ number_format($order->total, 3) }}</p>
+                        <p class="text-dom-a5 w-c fw-600">IDR. {{ number_format($order->total) }}</p>
                     </div>
                     <div>
                         <button id="pay-button" class="btnt b-w">Pay now</button>

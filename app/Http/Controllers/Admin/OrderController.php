@@ -27,7 +27,6 @@ class OrderController extends Controller
     }
     public function updateDelivery(Request $request, $id)
     {
-        // checkjika di tabel deliveries sudah ada order_id yang sama maka tidak bisa update
         $delivery = Delivery::where('order_id', $id)->first();
         if ($delivery) {
             return redirect()->route('dashboard')->with('error', 'Order has been delivered');
@@ -36,8 +35,8 @@ class OrderController extends Controller
                 'status' => $request->status
             ]);
             Delivery::create([
-                'order_id' => $id,
-                'delivery_  number' => 'DV-' . time()
+                'order_id' => $request->id,
+                'delivery_number' => 'DV' . time()
             ]);
             return redirect()->route('dashboard')->with('success', 'Order status updated');
         }

@@ -40,7 +40,7 @@ class DeliveryController extends Controller
     {
         if ($request->filter == 'all' && $request->search == '') {
             $deliveries = Delivery::whereHas('order', function ($query) {
-                $query->where('status', 'shipped')->orWhere('status', 'delivered')->orWhere('status', 'success');
+                $query->where('status', 'Shipped')->orWhere('status', 'Delivered')->orWhere('status', 'Success');
             })->get();
         } else if ($request->search == '') {
             $deliveries = Delivery::whereHas('order', function ($query) use ($request) {

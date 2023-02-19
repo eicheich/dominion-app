@@ -153,18 +153,18 @@
                         <td>{{ $delivery->order->product->name }}</td>
                         <td>{{ $delivery->order->quantity }}</td>
                         <td>
-                            @if ($delivery->order->status == 'shipped')
+                            @if ($delivery->order->status == 'Shipped')
                                 <form action="{{ route('delivery.update.status', $delivery->order_id) }}" class="flex"
                                     method="POST">
                                     @csrf
                                     @method('POST')
                                     <select name="status" class="form-select form-select" id="status">
-                                        <option value="shipped">Shipped</option>
-                                        <option value="delivered">Delivered</option>
+                                        <option value="Shipped">Shipped</option>
+                                        <option value="Delivered">Delivered</option>
                                     </select>
                                     <button type="submit" class="btn btn-sm btn-outline-secondary">update</button>
                                 </form>
-                            @elseif ($delivery->order->status == 'delivered')
+                            @elseif ($delivery->order->status == 'Delivered')
                                 <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Delivered</button>
                             @else
                                 <button type="submit" class="btn btn-sm btn-outline-secondary" disabled>Success</button>
