@@ -61,7 +61,8 @@ Route::prefix('order')->middleware('auth')->group(function () {
     Route::post('/pay', [TransactionController::class, 'pay'])->name('pay');
     Route::get('/', [TransactionController::class, 'history'])->name('history');
     Route::get('/detail/{id}', [TransactionController::class, 'detail'])->name('detail');
-    Route::put('/confirm/{id}', [TransactionController::class, 'confirm'])->name('confirm.orders');
+    Route::post('/confirm/{id}', [TransactionController::class, 'confirm'])->name('confirm.orders');
+    Route::get('/rate/{id}', [TransactionController::class, 'rate'])->name('rate.confirm.orders');
 
 });
 Route::get('/orders/{id}/cancel', [CancellController::class, 'cancel'])->name('orders.cancel')->middleware(['auth']);

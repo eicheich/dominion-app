@@ -12,8 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/client.css') }}">
     <script src="https://unpkg.com/feather-icons"></script>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script type="text/javascript" src=" https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script src="{{ asset('js/client.js') }}"></script>
 </head>
 <script src="https://unpkg.com/feather-icons"></script>
 

@@ -8,7 +8,8 @@ use Faker\Provider\ar_EG\Payment;
 use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\Category;
-
+use App\Models\Rate;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -53,11 +54,29 @@ class TransactionController extends Controller
         return view('client.transaction.detail', compact('order', 'category'));
     }
 
-    public function confirm($id)
+    public function confirm($id, Request $request)
     {
+        $request->validate([
+            'rate' => 'required|integer',
+            'comment' => 'required|string',
+        ]);
+
         Order::where('id', $id)->update([
             'status' => 'Success',
         ]);
+
+        Rate::create([
+            'order_id' => $id,
+            'user_id' => Auth::user()->id,
+            'rate' => $request->rate,
+            'comment' => $request->comment,
+        ]);
         return redirect()->route('history')->with('success', 'Order confirmed');
+    }
+    public function rate($id)
+    {
+        $category = Category::all();
+        $order = Order::find($id);
+        return view('client.transaction.rate', compact('order', 'category'));
     }
 }

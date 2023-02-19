@@ -25,4 +25,9 @@ class Order extends Model
     {
         return $this->hasOne(Cancellation::class);
     }
+
+    public function rate()
+    {
+        return $this->hasOne(Rate::class);
+    }
 }

@@ -393,7 +393,7 @@ body {
     align-items: center;
 }
 
-.center{
+.center {
     align-items: center;
     justify-content: center;
     background-color: #2130;
@@ -407,6 +407,7 @@ body {
     background-color: var(--primary-color);
     color: var(--bg);
 }
+
 .center .btn-c {
     transition: all 0.2s ease-in-out;
     border-radius: 0.2rem;
@@ -602,6 +603,7 @@ body {
     border-radius: 0.2rem;
     margin-bottom: 2rem;
 }
+
 .detail-header {
     align-items: center;
     display: block;
@@ -621,6 +623,21 @@ body {
     border-radius: 0.2rem;
     margin-bottom: 1rem;
 }
+
+#rating {
+    display: inline-block;
+    font-size: 2em;
+}
+
+.fa-star {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.checked {
+    color: #ffdd00;
+}
+
 
 .card-detail .card-header {
     display: flex;
@@ -779,31 +796,33 @@ body {
         padding: 0.5rem;
     }
 
-    .d-text{
+    .d-text {
         font-weight: 600;
         font-size: 1.2rem;
     }
-    .d-text-2{
+
+    .d-text-2 {
         font-weight: 500;
         font-size: 1.1rem;
     }
 
-    .text-max{
+    .text-max {
         max-width: 70%;
     }
 
-    .text-dom-a3{
+    .text-dom-a3 {
         font-size: 1.2rem;
     }
+
     .text-dom-a4 {
         font-size: 1.1rem;
     }
 
-    .text-dom-a5{
+    .text-dom-a5 {
         font-size: 1rem;
     }
 
-    .text-dom-a6{
+    .text-dom-a6 {
         font-size: 0.9rem;
     }
 
