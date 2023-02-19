@@ -56,7 +56,7 @@ class TransactionController extends Controller
     public function confirm($id)
     {
         Order::where('id', $id)->update([
-            'status' => 'success',
+            'status' => 'Success',
         ]);
         return redirect()->route('history')->with('success', 'Order confirmed');
     }

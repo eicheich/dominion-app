@@ -75,11 +75,11 @@
                     </table>
                 </div>
                 {!! getCancellationLink($order) !!}
-                @if ($order->status == 'delivered')
+                @if ($order->status == 'Delivered')
                     <form action="{{ route('confirm.orders', $order->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-primary ">Confirm</button>
+                        <button type="submit" class="btn-p">Confirm</button>
                     </form>
                 @endif
                 <br>
