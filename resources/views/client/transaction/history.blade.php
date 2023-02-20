@@ -90,7 +90,7 @@
                 <h3 class="text-dom-a3 pb-4">History</h3>
             </div>
             @foreach ($orders as $odr)
-                <a class="tnone" href="{{ route('detail', $odr  ->id) }}">
+                <a class="tnone" href="{{ route('detail', $odr->id) }}">
                     <div class="card-pay">
                         <div class="card-body-cart">
                             <div class="img-cart">
@@ -110,7 +110,8 @@
                             <h3 class="text-dom-a6">{{ $odr->created_at }}</h3>
                         </div>
                         <div class="title-pay">
-                            <h3 class="text-dom-a6">$ {{ number_format($odr->total, 2) }}</h3>
+                            <h3 class="text-dom-a6">IDR.
+                                {{ number_format($odr->total) }}</h3>
                         </div>
                         <div class="title-pay">
                             <span class="{{ getOrderStatusClass($odr->status) }}"> {{ $odr->status }}</span>
