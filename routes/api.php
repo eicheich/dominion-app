@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/callback', [CheckoutController::class, 'callback']);
+
+Route::get('/products', [ProductController::class, 'products'])->name('products');

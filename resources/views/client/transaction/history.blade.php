@@ -1,12 +1,10 @@
 {{-- @extends('layouts.main')
-
 @section('content')
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-
     @if (count($orders) == 0)
         <div class="container">
             <div class="row">
@@ -54,14 +52,10 @@
                     </tr>
                 @endforeach
             </tbody>
-
         </table>
     @endif
-
 @endsection --}}
-
 @extends('layouts.main')
-
 <div class="container">
     @section('content')
         @if (count($orders) == 0)
