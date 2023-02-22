@@ -33,7 +33,7 @@
             <tbody>
                 @foreach ($orders as $odr)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $odr->id }}</td>
                         <td>{{ $odr->order_number }}</td>
                         <td>{{ $odr->user->name }}</td>
                         <td>{{ $odr->product->name }}</td>

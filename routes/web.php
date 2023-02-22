@@ -32,7 +32,7 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
         Route::put('/{id}/reject', [CancellController::class, 'reject'])->name('admin.cancellations.reject');
     });
 });
-Route::resource('products', ProductController::class)->middleware(['isAdmin']);
+Route::resource('products', ProductController:: class)->middleware(['isAdmin']);
 Route::resource('orders', OrderController::class)->middleware(['isAdmin']);
 Route::get('/product/search', [ProductController::class, 'search'])->name('search.product')->middleware(['isAdmin']);
 Route::get('/order/search', [OrderController::class, 'search'])->name('search.order')->middleware(['isAdmin']);

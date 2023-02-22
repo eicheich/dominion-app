@@ -86,6 +86,7 @@
             <br>
             <br>
             @if (count($rate) == 0)
+            <div class="text-dom-a3 text-center">No Ratings</div>
             @else
                 <div class="flex-rate">
                     <div class="row-1">
