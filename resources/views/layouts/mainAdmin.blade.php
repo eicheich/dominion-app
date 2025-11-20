@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Admin Dashboard - Dominion Sports Store')</title>
+    <title>@yield('title', 'Admin Dashboard - Dominion')</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,47 +37,105 @@
             color: var(--dark-color);
         }
 
-        .sidebar {
+        /* Top Navbar - stays fixed at top */
+        .navbar {
             position: fixed;
             top: 0;
-            bottom: 0;
             left: 0;
-            z-index: 100;
-            padding: 48px 0 0;
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-            width: var(--sidebar-width);
-            background-color: var(--dark-color);
+            right: 0;
+            z-index: 1030;
+            height: 76px;
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
         }
 
-        .sidebar-sticky {
-            position: relative;
-            top: 0;
-            height: calc(100vh - 48px);
-            padding-top: .5rem;
-            overflow-x: hidden;
-            overflow-y: auto;
+        /* Sidebar extends from top */
+        .sidebar {
+            top: 0 !important;
         }
 
-        .sidebar .nav-link {
+        /* Main content area adjustment for fixed sidebar and navbar */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            margin-top: 76px;
+        }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .container-fluid .row {
+            margin: 0;
+        }
+
+        /* Override Bootstrap col classes for admin layout */
+        .admin-main {
+            flex: 1;
+            max-width: none;
+            padding: 1.5rem;
+        }
+
+        /* Card styling */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 12px 12px 0 0 !important;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Page header styling */
+        .page-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            color: var(--dark-color);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Button styling */
+        .btn {
+            border-radius: 8px;
             font-weight: 500;
-            color: #adb5bd;
-            padding: 0.75rem 1rem;
-            border-radius: 0;
+            padding: 0.5rem 1rem;
             transition: all 0.3s ease;
         }
 
-        .sidebar .nav-link:hover {
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.1);
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .sidebar .nav-link.active {
-            color: #fff;
-            background-color: var(--primary-color);
+        /* Table styling */
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        .sidebar .nav-link i {
-            margin-right: 0.5rem;
+        .table thead th {
+            background-color: var(--light-color);
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--secondary-color);
         }
 
         .navbar-brand {
@@ -93,19 +151,41 @@
             right: 1rem;
         }
 
-        .main-content {
-            margin-left: var(--sidebar-width);
-            padding-top: 48px;
+        /* Responsive Design */
+        @media (max-width: 767.98px) {
+            .main-content {
+                margin-left: 0;
+                padding-top: 56px;
+            }
+
+            .sidebar {
+                top: 56px;
+            }
+
+            .admin-main {
+                padding: 1rem;
+            }
+
+            .page-header {
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+
+            .card-header {
+                padding: 1rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
         }
 
-        .card {
-            border: none;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+        @media (min-width: 768px) {
+            .main-content {
+                margin-left: var(--sidebar-width);
+                padding-top: 76px;
+            }
         }
-
-        .card:hover {
-            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 767.98px) {
@@ -125,8 +205,8 @@
 <body>
     <!-- Top Navbar -->
     <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ route('dashboard') }}">
-            <i class="bi bi-trophy-fill me-2"></i>Dominion Admin
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ route('admin.index') }}">
+            Dominion Admin
         </a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
@@ -142,74 +222,28 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
-                                href="{{ route('dashboard') }}">
-                                <i class="bi bi-house-door"></i>Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::routeIs('products*') ? 'active' : '' }}"
-                                href="{{ route('products') }}">
-                                <i class="bi bi-box"></i>Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::routeIs('orders*') ? 'active' : '' }}"
-                                href="{{ route('orders.index') }}">
-                                <i class="bi bi-cart-check"></i>Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::routeIs('users*') ? 'active' : '' }}"
-                                href="{{ route('users') }}">
-                                <i class="bi bi-people"></i>Users
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::routeIs('admin.deliveries*') ? 'active' : '' }}"
-                                href="{{ route('admin.deliveries') }}">
-                                <i class="bi bi-truck"></i>Deliveries
-                            </a>
-                        </li>
-                    </ul>
+    <!-- Include Sidebar -->
+    @include('layouts.dashboard')
 
-                    <hr class="my-3">
+    <!-- Main Content with Sidebar -->
+    <div class="main-content">
+        {{-- @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">
-                                <i class="bi bi-box-arrow-right"></i>Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-cir
+                cle me-2"></i>{{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif --}}
 
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                        <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                        <i class="bi bi-exclamation-circle me-2"></i>{{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
-                @yield('content')
-            </main>
+        <div class="admin-main">
+            @yield('content')
         </div>
     </div>
 

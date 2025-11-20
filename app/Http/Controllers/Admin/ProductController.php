@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class ProductController extends Controller
 {
-    public function products()
+    public function index()
     {
         $products = Product::with('category')->paginate(2);
         return view('admin.product.products', [
@@ -42,8 +42,8 @@ class ProductController extends Controller
         ]);
 
         $image = $request->file('image');
-        $image = $image->hashName();
-        $request->file('image')->storeAs('images/products', $image);
+        $imageName = $image->hashName();
+        $request->file('image')->storeAs('images/products', $imageName, 'public');
 
 
 
@@ -53,11 +53,19 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
-            'image' => $image,
+            'image' => $imageName,
             'category_id' => $request->category_id
         ]);
 
-        return redirect()->route('products')->with('success', 'Product created successfully');
+        return redirect()->route('products.index')->with('success', 'Product created successfully');
+    }
+
+    public function show($id)
+    {
+        $product = Product::with('category')->findOrFail($id);
+        return view('admin.product.show', [
+            'product' => $product
+        ]);
     }
 
     public function edit($id)
@@ -88,11 +96,11 @@ class ProductController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $image = $image->hashName();
-            $request->file('image')->storeAs('images/products', $image);
-            Storage::disk('local')->delete($product->image);
+            $imageName = $image->hashName();
+            $request->file('image')->storeAs('images/products', $imageName, 'public');
+            Storage::disk('public')->delete('images/products/' . $product->image);
         } else {
-            $image = $product->image;
+            $imageName = $product->image;
         }
 
         $product->update([
@@ -100,19 +108,19 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
-            'image' => $image,
+            'image' => $imageName,
             'category_id' => $request->category_id
         ]);
 
-        return redirect()->route('products')->with('success', 'Product updated successfully');
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 
     public function destroy($id)
     {
         $data = Product::findOrFail($id);
-        Storage::disk('local')->delete($data->image);
+        Storage::disk('public')->delete('images/products/' . $data->image);
         $data->delete();
 
-        return redirect()->route('products')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('products.index')->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -46,14 +46,41 @@ class TransactionController extends Controller
     }
     public function history()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->get();
+        $orders = Order::with(['product', 'product.category', 'user'])
+            ->where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('client.transaction.history', compact('orders'));
     }
 
     public function detail($id)
     {
-        //
-        $order = Order::find($id);
+        $order = Order::with(['product', 'product.category', 'user'])
+            ->where('user_id', auth()->id())
+            ->findOrFail($id);
+
         return view('client.transaction.detail', compact('order'));
+    }
+
+    public function confirmDelivery($id)
+    {
+        $order = Order::with(['product', 'product.category', 'user'])
+            ->where('user_id', auth()->id())
+            ->findOrFail($id);
+
+        // Only allow confirmation if order is delivered
+        if ($order->status !== 'delivered') {
+            return redirect()->route('detail', $id)
+                ->with('error', 'Order must be delivered before confirmation.');
+        }
+
+        // Update order status to success
+        $order->update([
+            'status' => 'success'
+        ]);
+
+        return redirect()->route('detail', $id)
+            ->with('success', 'Order confirmed! Thank you for your purchase.');
     }
 }

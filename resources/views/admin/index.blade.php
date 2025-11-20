@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">
+        <h1 class="h4">
             <i class="bi bi-speedometer2 me-2"></i>Dashboard Overview
         </h1>
         <div class="btn-toolbar mb-2 mb-md-0">
@@ -22,7 +22,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Total Products
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">
                                 {{ $totalProducts ?? 0 }}
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Total Orders
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">
                                 {{ $totalOrders ?? 0 }}
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Total Users
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">
                                 {{ $totalUsers ?? 0 }}
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Pending Orders
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h6 mb-0 font-weight-bold text-gray-800">
                                 {{ $pendingOrders ?? 0 }}
                             </div>
                         </div>
@@ -105,25 +105,53 @@
                     </h6>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <a href="{{ route('products.create') }}" class="btn btn-primary btn-lg w-100">
-                                <i class="bi bi-plus-circle me-2"></i>Add Product
+                    <div class="row g-3">
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ route('admin.deliveries') }}"
+                                class="btn btn-outline-primary btn-md w-100 py-2 text-start">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="bi bi-truck me-2"></i>
+                                        <span class="fw-bold">Deliveries</span>
+                                    </div>
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
                             </a>
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <a href="{{ route('products') }}" class="btn btn-info btn-lg w-100">
-                                <i class="bi bi-box me-2"></i>Manage Products
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ route('products.create') }}"
+                                class="btn btn-outline-success btn-md w-100 py-2 text-start">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        <span class="fw-bold">Add Product</span>
+                                    </div>
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
                             </a>
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <a href="{{ route('orders.index') }}" class="btn btn-success btn-lg w-100">
-                                <i class="bi bi-cart-check me-2"></i>View Orders
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ route('admin.users.index') }}"
+                                class="btn btn-outline-info btn-md w-100 py-2 text-start">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="bi bi-people me-2"></i>
+                                        <span class="fw-bold">Manage Users</span>
+                                    </div>
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
                             </a>
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <a href="{{ route('users') }}" class="btn btn-secondary btn-lg w-100">
-                                <i class="bi bi-people me-2"></i>Manage Users
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ route('admin.deliveries') }}"
+                                class="btn btn-outline-warning btn-md w-100 py-2 text-start">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="bi bi-exclamation-circle me-2"></i>
+                                        <span class="fw-bold">Pending Orders</span>
+                                    </div>
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
                             </a>
                         </div>
                     </div>

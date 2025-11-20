@@ -1,84 +1,57 @@
 @extends('layouts.main')
 
-@section('title', 'Home - Dominion Sports Store')
+@section('title', 'Home - Dominion')
 
 @section('content')
     <!-- Hero Section -->
-    <section class="bg-primary text-white py-5 mb-5">
-        <div class="container">
-            <div class="row align-items-center">
+    <section class="hero-section py-5">
+        <div class="container py-4">
+            <div class="row align-items-center gy-4">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-4">Welcome to Dominion Sports</h1>
-                    <p class="lead mb-4">Discover the best sports equipment and gear for all your athletic needs. From
-                        professional gear to beginner-friendly options, we have everything you need to excel in your
-                        favorite sports.</p>
-                    @auth
-                        <a href="#products" class="btn btn-light btn-lg">
-                            <i class="bi bi-arrow-down me-2"></i>Shop Now
-                        </a>
-                    @else
-                        <div class="d-flex gap-3">
-                            <a href="{{ route('register') }}" class="btn btn-light btn-lg">
-                                <i class="bi bi-person-plus me-2"></i>Join Now
-                            </a>
-                            <a href="{{ route('login') }}" class="btn btn-outline-light btn-lg">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
-                            </a>
-                        </div>
-                    @endauth
+                    <p class="text-uppercase text-muted fw-semibold small mb-2">New Arrivals • 2025</p>
+                    <h1 class="display-5 fw-bold mb-3">Gear up for every match in style</h1>
+                    <p class="text-secondary mb-4">Discover curated collections for volleyball, badminton, football, and
+                        more. Sleek fits, breathable fabrics, and pro-grade equipment ready for your next game.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#products" class="btn btn-primary px-4">Shop Featured</a>
+                        <a href="{{ route('history') }}" class="btn btn-outline-secondary px-4">Track Orders</a>
+                    </div>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <i class="bi bi-trophy-fill" style="font-size: 10rem; opacity: 0.3;"></i>
+                    <img src="https://wallpapers.com/images/hd/friends-playing-sports-png-wdq-g7je3sapli04unmv.jpg"
+                        alt="Athlete" class="img-fluid hero-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-5 mb-5">
+    <!-- Category Quick Links -->
+    <section class="py-4 border-top border-bottom bg-white">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0">
-                        <div class="card-body">
-                            <i class="bi bi-truck text-primary mb-3" style="font-size: 3rem;"></i>
-                            <h5 class="card-title">Free Delivery</h5>
-                            <p class="card-text text-muted">Free shipping on orders over $100. Fast and reliable delivery to
-                                your doorstep.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0">
-                        <div class="card-body">
-                            <i class="bi bi-shield-check text-primary mb-3" style="font-size: 3rem;"></i>
-                            <h5 class="card-title">Quality Guarantee</h5>
-                            <p class="card-text text-muted">All our products come with quality guarantee. Return within 30
-                                days if not satisfied.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0">
-                        <div class="card-body">
-                            <i class="bi bi-headset text-primary mb-3" style="font-size: 3rem;"></i>
-                            <h5 class="card-title">24/7 Support</h5>
-                            <p class="card-text text-muted">Our customer support team is available 24/7 to help you with any
-                                questions.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                @forelse ($categories as $category)
+                    <a href="{{ route('category', $category->id) }}" class="category-chip">
+                        {{ $category->name }}
+                    </a>
+                @empty
+                    <p class="text-muted">No categories available</p>
+                @endforelse
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="py-5">
+    <section id="products" class="py-4">
         <div class="container">
-            <div class="row mb-5">
-                <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Featured Products</h2>
-                    <p class="lead text-muted">Discover our top-rated sports equipment and gear</p>
+            <div class="d-flex flex-wrap justify-content-between align-items-end mb-4 gap-3">
+                <div>
+                    <p class="text-uppercase text-muted small mb-1">Just for you</p>
+                    <h3 class="fw-bold mb-0">Featured Products</h3>
+                </div>
+                <div class="btn-group" role="group" aria-label="product filters">
+                    <button class="btn btn-sm btn-outline-secondary">Latest</button>
+                    <button class="btn btn-sm btn-outline-secondary">Popular</button>
+                    <button class="btn btn-sm btn-outline-secondary">Top Rated</button>
                 </div>
             </div>
 
@@ -95,9 +68,8 @@
                                         <div class="position-relative overflow-hidden">
                                             <img src="{{ asset('storage/images/products/' . $product->image) }}"
                                                 class="card-img-top" alt="{{ $product->name }}"
-                                                style="height: 250px; object-fit: cover; transition: transform 0.3s ease;">
+                                                style="height: 250px; object-fit: cover;">
 
-                                            <!-- Stock Badge -->
                                             @if ($product->stock > 0)
                                                 <span class="badge bg-success position-absolute top-0 start-0 m-2">
                                                     <i class="bi bi-check-circle me-1"></i>In Stock
@@ -108,7 +80,6 @@
                                                 </span>
                                             @endif
 
-                                            <!-- Category Badge -->
                                             <span class="badge bg-primary position-absolute top-0 end-0 m-2">
                                                 {{ $product->category->name ?? 'Uncategorized' }}
                                             </span>
@@ -160,16 +131,60 @@
 
     @push('styles')
         <style>
-            .product-card:hover img {
-                transform: scale(1.05);
+            .hero-section {
+                background: linear-gradient(135deg, #f4f7fb 0%, #ffffff 100%);
+                border-bottom: 1px solid #eef2f6;
+            }
+
+            .hero-image {
+                max-height: 420px;
+                object-fit: contain;
+            }
+
+            .btn-primary {
+                background-color: #001f3f !important;
+                border-color: #001f3f !important;
+            }
+
+            .btn-primary:hover {
+                background-color: #003366 !important;
+                border-color: #003366 !important;
+            }
+
+            .category-chip {
+                display: block;
+                padding: 0.65rem 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 999px;
+                font-weight: 600;
+                color: #0f172a;
+                text-decoration: none;
+                transition: all 0.2s ease;
+                font-size: 0.9rem;
+                background-color: #fff;
+            }
+
+            .category-chip:hover {
+                border-color: #001f3f;
+                color: #001f3f;
+                box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            }
+
+            .product-card {
+                transition: all 0.25s ease;
             }
 
             .product-card:hover {
-                transform: translateY(-5px);
+                transform: translateY(-6px);
+                box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
             }
 
-            .hero-section {
-                background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+            .product-card img {
+                transition: transform 0.25s ease;
+            }
+
+            .product-card:hover img {
+                transform: scale(1.03);
             }
         </style>
     @endpush

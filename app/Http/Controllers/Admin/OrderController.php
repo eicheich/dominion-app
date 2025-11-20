@@ -27,12 +27,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function updateDelivery(Request $request, $id) {
+    public function updateDelivery(Request $request, $id)
+    {
         // checkjika di tabel deliveries sudah ada order_id yang sama maka tidak bisa update
         $delivery = Delivery::where('order_id', $id)->first();
 
-        if($delivery) {
-            return redirect()->route('dashboard')->with('error', 'Order has been delivered');
+        if ($delivery) {
+            return redirect()->route('admin.index')->with('error', 'Order has been delivered');
         } else {
             Order::where('id', $id)->update([
                 'status' => $request->status
@@ -43,7 +44,7 @@ class OrderController extends Controller
                 'delivery_number' => 'DV-' . time()
             ]);
 
-            return redirect()->route('dashboard')->with('success', 'Order status updated');
+            return redirect()->route('admin.index')->with('success', 'Order status updated');
         }
 
 
