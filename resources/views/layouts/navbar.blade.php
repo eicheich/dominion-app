@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #001f3f;">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('landingpage') }}">
-            <i class="bi bi-trophy-fill me-2"></i>
-            <strong>Dominion Sports</strong>
+            <strong>Dominion</strong>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -14,21 +13,23 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('landingpage') ? 'active' : '' }}"
                         href="{{ route('landingpage') }}">
-                        <i class="bi bi-house me-1"></i>Home
+                        Home
                     </a>
                 </li>
                 @auth
                     <li class="nav-item">
                         <a class="nav-link {{ Request::routeIs('history') ? 'active' : '' }}" href="{{ route('history') }}">
-                            <i class="bi bi-clock-history me-1"></i>My Orders
+                            My Orders
                         </a>
                     </li>
                 @endauth
             </ul>
 
             <!-- Search Form -->
-            <form class="d-flex me-3" role="search" style="width: 300px;">
-                <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+            <form class="d-flex me-3" role="search" style="width: 300px;" action="{{ route('search') }}"
+                method="GET">
+                <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search"
+                    name="q" required>
                 <button class="btn btn-outline-light" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
@@ -49,7 +50,7 @@
 
                     <!-- Admin Link -->
                     @can('isAdmin')
-                        <a href="{{ route('dashboard') }}" class="btn btn-outline-light me-2">
+                        <a href="{{ route('admin.index') }}" class="btn btn-outline-light me-2">
                             <i class="bi bi-gear-fill me-1"></i>Admin
                         </a>
                     @endcan
@@ -77,10 +78,10 @@
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-light me-2">
-                        <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                        Login
                     </a>
                     <a href="{{ route('register') }}" class="btn btn-light">
-                        <i class="bi bi-person-plus me-1"></i>Register
+                        Register
                     </a>
                 @endauth
             </div>

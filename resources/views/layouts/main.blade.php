@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Dominion Sports Store')</title>
+    <title>@yield('title', 'Dominion')</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,8 @@
 
     <style>
         :root {
-            --primary-color: #2563eb;
+            --primary-color: #001f3f;
+            --primary-hover: #003366;
             --secondary-color: #64748b;
             --success-color: #059669;
             --warning-color: #d97706;
@@ -105,11 +106,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Dominion Sports Store</h5>
-                    <p class="text-muted">Your one-stop shop for all sports equipment and gear.</p>
+                    <h5 class="text-white">Dominion</h5>
+                    <p class="text-white-50">Your one-stop shop for all sports equipment and gear.</p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <p class="text-muted mb-0">&copy; {{ date('Y') }} Dominion Sports Store. All rights reserved.
+                    <p class="text-white-50 mb-0">&copy; {{ date('Y') }} Dominion. All rights reserved.
                     </p>
                 </div>
             </div>

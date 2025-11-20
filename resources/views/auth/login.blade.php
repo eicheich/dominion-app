@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login - Dominion Sports Store</title>
+    <title>Login - Dominion</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -19,16 +19,43 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
             border: none;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .login-image {
+            background: url('https://img.freepik.com/free-photo/athlete-standing-all-weather-running-track_53876-23896.jpg') center/cover;
+            min-height: 100%;
+            position: relative;
+        }
+
+        .login-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.9) 0%, rgba(0, 51, 102, 0.95) 100%);
+        }
+
+        .image-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
         }
 
         .form-control {
@@ -39,12 +66,12 @@
         }
 
         .form-control:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+            border-color: #001f3f;
+            box-shadow: 0 0 0 0.2rem rgba(0, 31, 63, 0.25);
         }
 
         .btn-login {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
             border: none;
             border-radius: 10px;
             padding: 12px 30px;
@@ -54,122 +81,154 @@
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 31, 63, 0.3);
         }
 
         .brand-logo {
-            color: #2563eb;
-            font-size: 2.5rem;
+            color: #001f3f;
+            font-size: 1.5rem;
             font-weight: 700;
+        }
+
+        .brand-icon {
+            font-size: 2rem;
         }
     </style>
 </head>
 
-<body class="d-flex align-items-center justify-content-center">
+<body class="d-flex align-items-center justify-content-center py-4">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-xl-6">
+            <div class="col-lg-10 col-xl-9">
                 <div class="card login-card">
-                    <div class="card-body p-5">
-                        <!-- Brand -->
-                        <div class="text-center mb-5">
-                            <div class="brand-logo mb-3">
-                                <i class="bi bi-trophy-fill"></i>
-                                <div class="mt-2">Dominion Sports</div>
-                            </div>
-                            <h4 class="fw-bold mb-2">Welcome Back!</h4>
-                            <p class="text-muted">Please sign in to your account</p>
-                        </div>
+                    <div class="row g-0">
+                        <!-- Left Side - Form -->
+                        <div class="col-md-6">
+                            <div class="card-body p-4 p-lg-5">
+                                <!-- Brand -->
+                                <div class="mb-4">
+                                    <div class="brand-logo mb-3">
+                                        <span>Dominion</span>
+                                    </div>
+                                    <h4 class="fw-bold mb-2">Welcome Back!</h4>
+                                    <p class="text-muted small mb-0">Please sign in to your account</p>
+                                </div>
 
-                        <!-- Error Messages -->
-                        @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-circle me-2"></i>{{ session('error') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-                        @endif
+                                <!-- Error Messages -->
+                                @if (session('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-exclamation-circle me-2"></i>{{ session('error') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                @endif
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-circle me-2"></i>
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-                        @endif
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-exclamation-circle me-2"></i>
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                @endif
 
-                        <!-- Login Form -->
-                        <form method="POST" action="{{ route('login.post') }}">
-                            @csrf
+                                <!-- Login Form -->
+                                <form method="POST" action="{{ route('login.post') }}">
+                                    @csrf
 
-                            <div class="mb-4">
-                                <label class="form-label fw-bold" for="username">
-                                    <i class="bi bi-person me-2"></i>Username or Email
-                                </label>
-                                <input type="text" id="username" name="username"
-                                    class="form-control @error('username') is-invalid @enderror"
-                                    value="{{ old('username') }}" required placeholder="Enter your username or email">
-                                @error('username')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold small" for="username">
+                                            <i class="bi bi-person me-1"></i>Username
+                                        </label>
+                                        <input type="text" id="username" name="username"
+                                            class="form-control form-control-sm @error('username') is-invalid @enderror"
+                                            value="{{ old('username') }}" required
+                                            placeholder="Enter your username">
+                                        @error('username')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-                            <div class="mb-4">
-                                <label class="form-label fw-bold" for="password">
-                                    <i class="bi bi-lock me-2"></i>Password
-                                </label>
-                                <div class="position-relative">
-                                    <input type="password" id="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror" required
-                                        placeholder="Enter your password">
-                                    <button type="button"
-                                        class="btn position-absolute top-50 end-0 translate-middle-y border-0 bg-transparent"
-                                        onclick="togglePassword()">
-                                        <i class="bi bi-eye" id="toggleIcon"></i>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold small" for="password">
+                                            <i class="bi bi-lock me-1"></i>Password
+                                        </label>
+                                        <div class="position-relative">
+                                            <input type="password" id="password" name="password"
+                                                class="form-control form-control-sm @error('password') is-invalid @enderror"
+                                                required placeholder="Enter your password">
+                                            <button type="button"
+                                                class="btn btn-sm position-absolute top-50 end-0 translate-middle-y border-0 bg-transparent"
+                                                onclick="togglePassword()">
+                                                <i class="bi bi-eye" id="toggleIcon"></i>
+                                            </button>
+                                        </div>
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember"
+                                                id="remember">
+                                            <label class="form-check-label small" for="remember">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-login btn-primary w-100 mb-3">
+                                        <i class="bi bi-box-arrow-in-right me-1"></i>Sign In
                                     </button>
+                                </form>
+
+                                <!-- Divider -->
+                                <div class="text-center mb-3">
+                                    <hr class="my-3">
+                                    <span class="text-muted small bg-white px-3">or</span>
                                 </div>
-                                @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <div class="mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember">
-                                    <label class="form-check-label" for="remember">
-                                        Remember me
-                                    </label>
+                                <!-- Register Link -->
+                                <div class="text-center">
+                                    <p class="mb-0 small">Don't have an account?
+                                        <a href="{{ route('register') }}" class="text-decoration-none fw-semibold">
+                                            Create one here
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <!-- Back to Home -->
+                                <div class="text-center mt-3">
+                                    <a href="{{ route('landingpage') }}" class="btn btn-outline-secondary btn-sm">
+                                        <i class="bi bi-arrow-left me-1"></i>Back to Home
+                                    </a>
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn btn-login btn-primary w-100 mb-4">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
-                            </button>
-                        </form>
-
-                        <!-- Divider -->
-                        <div class="text-center mb-4">
-                            <hr class="my-4">
-                            <span class="text-muted bg-white px-3">or</span>
                         </div>
 
-                        <!-- Register Link -->
-                        <div class="text-center">
-                            <p class="mb-0">Don't have an account?
-                                <a href="{{ route('register') }}" class="text-decoration-none fw-bold">
-                                    Create one here
-                                </a>
-                            </p>
-                        </div>
-
-                        <!-- Back to Home -->
-                        <div class="text-center mt-4">
-                            <a href="{{ route('landingpage') }}" class="btn btn-outline-secondary">
-                                <i class="bi bi-arrow-left me-2"></i>Back to Home
-                            </a>
+                        <!-- Right Side - Image -->
+                        <div class="col-md-6 d-none d-md-block">
+                            <div class="login-image">
+                                <div class="image-content">
+                                    <h2 class="fw-bold mb-3">Start Your Journey</h2>
+                                    <p class="lead mb-4">Join thousands of athletes who trust Dominion for their
+                                        equipment needs.</p>
+                                    equipment needs.</p>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Premium Quality
+                                            Products</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Fast & Secure
+                                            Delivery</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Expert Customer
+                                            Support</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Best Price
+                                            Guarantee</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -194,45 +253,6 @@
             }
         }
     </script>
-</body>
-
-</html>
-in</button>
-</div>
-<div class="text-center mb-5 pb-5">
-    <a class="text-muted" href="#!">Forgot password?</a>
-
-</div>
-
-<div class="d-flex align-items-center justify-content-center pb-4">
-    <p class="mb-0 me-2">Don't have an account?</p>
-    <a class="text-muted" style="color: " href="{{ route('register') }}">Sign
-        Up</a>
-
-</div>
-
-</form>
-
-</div>
-</div>
-<div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-        <h4 class="mb-4">Body and Mind in perfect balance</h4>
-        <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-            do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</section>
-
 </body>
 
 </html>
